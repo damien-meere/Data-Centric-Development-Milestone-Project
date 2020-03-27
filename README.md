@@ -4,7 +4,7 @@
 This project website will highlight my capability to employ the various tools illustrated throughout the Practical Python and Data-Centric Development section of the Code Institute 
 programme. 
 
-This project will present a Training course booking site, whtat will enable trainees to view what courses are currently planned, and what courses have been complete. In 
+This project will present a Training course booking site, that will enable trainees to view what courses are currently planned, and what courses have been complete. In 
 relation to the courses that are planned, the trainee will be able to view the uptake level and make a booking. For courses that have been complete, the trainee can provide feedback 
 for future trainees to identify the most popular courses.
 
