@@ -5,13 +5,14 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'trainingDB'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI_TASK', 'mongodb://localhost')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI_MILESTONE3', 'mongodb://localhost')
 
-
+mongo = PyMongo(app)
 
 @app.route('/')
-def hello():
-    return 'Hello World'
+@app.route('/get_courses')
+def get_courses():
+    return render_template("courses.html", courses=mongo.db.courses.find())
 
 
 if __name__ == '__main__':
