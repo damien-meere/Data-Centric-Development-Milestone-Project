@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for course in courses %}
-        {{course.course_name}}
-        {{course.category_name}}
-        {{course.date}}
-        {{course.duration}}
-        {{course.course_description}}
-        {{course.max_subscriber}}
-        {{course.subscriber_list}}
-    {% endfor%}
+
+
+
+
+
+<ul class="collapsible" data-collapsible="accordion">
+	{% for course in courses %}
+	<li>
+		<div class="collapsible-header">
+			<div class="col s3">
+                {% if course.category_name == "technical" %}
+                    <i class="material-icons">build</i>
+                {% elif course.category_name == "soft-skills" %}
+                    <i class="material-icons">group</i>
+                {% elif course.category_name == "professional" %}
+                    <i class="material-icons">thumb_up</i>
+                {% endif %}
+			</div>
+			<div class="task_header col s9">
+				<strong>{{course.course_name}} </strong> Date - {{course.date}}, Duration - {{course.duration}}
+			</div>
+		</div>
+		<div class="collapsible-body">
+			<span>{{course.course_description}}</span>
+            <span>{{course.max_subscriber}}</span>
+            <span>{{course.subscriber_list}}</span>
+		</div>
+	</li>
+	{% endfor %}
+</ul>
+
+
+
+
+
+
+
+
+
 {% endblock %}
