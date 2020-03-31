@@ -14,6 +14,9 @@ mongo = PyMongo(app)
 def get_courses():
     return render_template("courses.html", courses=mongo.db.courses.find())
 
+@app.route('/add_course')
+def add_course():
+    return render_template('addcourse.html', categories=mongo.db.categories.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),

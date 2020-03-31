@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-
-
-<ul class="collapsible" data-collapsible="accordion">
+<ul class="collapsible popout" data-collapsible="accordion">
 	{% for course in courses %}
 	<li>
 		<div class="collapsible-header">
 			<div class="col s3">
+                <!-- Icon dependant on the category that set for the course -->
                 {% if course.category_name == "technical" %}
                     <i class="material-icons">build</i>
                 {% elif course.category_name == "soft-skills" %}
                     <i class="material-icons">group</i>
                 {% elif course.category_name == "professional" %}
                     <i class="material-icons">thumb_up</i>
+                {% else %}
+                    <i class="material-icons">assignment</i>
                 {% endif %}
 			</div>
 			<div class="task_header col s9">

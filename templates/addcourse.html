@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Create New Course</h3>
+
+<div class="row">
+	<form action="" method="POST" class="col s12">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">assignment</i>
+				<input id="course_name" name="course_name" type="text" class="validate">
+				<label for="icon_prefix">Course Title</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">poll</i>
+				<select id="category_name" name="category_name">
+                    <option value="" disabled selected>Choose Category</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat.category_name }}"> {{ cat.category_name.capitalize() }}</option>
+                    {% endfor %}
+                </select>
+				<label>Course Category</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12" id="matfix">
+				<i class="material-icons prefix">today</i>
+				<input id="date" name="date" type="text" class="datepicker">
+				<label for="icon_prefix">Date</label>
+			</div>
+		</div>
+
+		<div class="input-field col s12" id="duration" name="duration">
+			<select>
+                <option value="" disabled selected>Choose Course Duration</option>
+                <option value="half day">Half Day</option>
+                <option value="1 day">1 Day</option>
+                <option value="2 days">2 Days</option>
+                <option value="3 days">3 Days</option>
+                <option value="4 days">4 Days</option>
+                <option value="5 days">5 Days</option>
+            </select>
+			<label>Course Duration</label>
+		</div>
+
+		<div class="input-field col s12" id="max_subscriber" name="max_subscriber">
+			<select>
+                <option value="" disabled selected>Set Maximum Number of Candidates</option>
+                <option value="5">5 Candidates</option>
+                <option value="10">10 Candidates</option>
+                <option value="15">15 Candidates</option>
+            </select>
+			<label>Maximum Candidates</label>
+		</div>
+
+        <div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">mode_edit</i>
+				<textarea name="task_description" id="task_description" class="materialize-textarea"></textarea>
+				<label for="icon_telephone">Course Description</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<button class="btn waves-effect waves-light" type="submit">Create Course
+                <i class="material-icons right">playlist_add</i>
+            </button>
+		</div>
+
+	</form>
+</div>
+
+{% endblock %}
