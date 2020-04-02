@@ -18,6 +18,12 @@ def get_courses():
 def add_course():
     return render_template('addcourse.html', categories=mongo.db.categories.find())
 
+@app.route('/insert_course', methods=['POST'])
+def insert_course():
+    courses = mongo.db.courses
+    courses.insert_one(request.form.to_dict())
+    return redirect(url_for('get_courses'))
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
             port=int(os.environ.get('PORT', "5000")),
