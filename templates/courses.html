@@ -17,14 +17,26 @@
                     <i class="material-icons">assignment</i>
                 {% endif %}
 			</div>
-			<div class="task_header col s9">
-				<strong>{{course.course_name}} </strong> Date - {{course.date}}, Duration - {{course.duration}}
+			<div class="col s9 course_title">
+                <div>
+                    <strong>{{course.course_name}} </strong> 
+                </div>
+                <div> 
+                    Date - {{course.date}}
+                </div>
 			</div>
 		</div>
 		<div class="collapsible-body">
 			<span>{{course.course_description}}</span>
+            <span>{{course.duration}}</span>
             <span>{{course.max_subscriber}}</span>
             <span>{{course.subscriber_list}}</span>
+
+            <div class="row btn-centre">
+                <a class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>View Enrollments</a>
+                <a class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>Update Course</a>
+                <a class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>Delete Course</a>
+            </div>
 		</div>
 	</li>
 	{% endfor %}

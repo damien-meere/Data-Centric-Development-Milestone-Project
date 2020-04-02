@@ -1,0 +1,16 @@
+.btn-centre {
+    text-align:center;
+}
+
+.course_title{
+    float:left;
+}
+
+.btn-detail{
+    margin: 5px 5px;
+    padding: 0 0.5;
+}
+
+.course_header{
+    margin-top: 5px;
+}
