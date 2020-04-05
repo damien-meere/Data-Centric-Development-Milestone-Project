@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">assignment</i>
-				<input id="course_name" name="course_name" type="text" class="validate">
+				<input id="course_name" name="course_name" type="text" class="validate" value="{{course.course_name}}">
 				<label for="icon_prefix">Course Title</label>
 			</div>
 		</div>
@@ -18,7 +18,11 @@
 				<select id="category_name" name="category_name">
                     <option value="" disabled selected>Choose Category</option>
                     {% for cat in categories %}
-                    <option value="{{ cat.category_name }}"> {{ cat.category_name.capitalize() }}</option>
+                        {% if cat.category_name == course.category_name %}
+                        <option value="{{ cat.category_name }}" selected> {{ cat.category_name.capitalize() }}</option>
+                        {% else %}
+                        <option value="{{ cat.category_name }}"> {{ cat.category_name.capitalize() }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
 				<label>Course Category</label>
@@ -31,31 +35,42 @@
 				<label for="icon_prefix">Date</label>
 			</div>
 		</div>
-		<div class="input-field col s12">
-			<select id="duration" name="duration">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">av_timer</i>
+				<select id="duration" name="duration">
                 <option value="" disabled selected>Choose Course Duration</option>
-                <option value="half day">Half Day</option>
-                <option value="1 day">1 Day</option>
-                <option value="2 days">2 Days</option>
-                <option value="3 days">3 Days</option>
-                <option value="4 days">4 Days</option>
-                <option value="5 days">5 Days</option>
+                {% for dur in durations %}
+                    {% if dur.duration == course.duration %}
+                    <option value="{{ dur.duration }}" selected> {{ dur.duration }}</option>
+                    {% else %}
+                    <option value="{{ dur.duration }}"> {{ dur.duration }}</option>
+                    {% endif %}
+                {% endfor %}
             </select>
-			<label>Course Duration</label>
+				<label>Course Duration</label>
+			</div>
 		</div>
-		<div class="input-field col s12" >
-			<select id="max_subscriber" name="max_subscriber">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">group_add</i>
+				<select id="max_subscriber" name="max_subscriber">
                 <option value="" disabled selected>Set Maximum Number of Candidates</option>
-                <option value="5">5 Candidates</option>
-                <option value="10">10 Candidates</option>
-                <option value="15">15 Candidates</option>
+                {% for size in sizes %}
+                    {% if size.max_subscriber == course.max_subscriber %}
+                    <option value="{{ size.max_subscriber }}" selected> {{ size.max_subscriber }}</option>
+                    {% else %}
+                    <option value="{{ size.max_subscriber }}"> {{ size.max_subscriber }}</option>
+                    {% endif %}
+                {% endfor %}
             </select>
-			<label>Maximum Candidates</label>
+				<label>Maximum Candidates</label>
+			</div>
 		</div>
-        <div class="row">
+		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">mode_edit</i>
-				<textarea name="course_description" id="course_description" class="materialize-textarea"></textarea>
+				<textarea name="course_description" id="course_description" class="materialize-textarea">{{ course.course_description }}</textarea>
 				<label for="icon_telephone">Course Description</label>
 			</div>
 		</div>
@@ -67,5 +82,13 @@
 
 	</form>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+        date = Date.parse('{{course.date}}');
+        $('#date').pickadate('picker').set('select', date, { format: 'dd/mm/yyyy' }).trigger('change');
+    });
+</script>
 
 {% endblock %}

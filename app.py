@@ -16,7 +16,13 @@ def get_courses():
 
 @app.route('/add_course')
 def add_course():
-    return render_template('addcourse.html', categories=mongo.db.categories.find())
+    get_categories = mongo.db.categories.find()
+    get_durations = mongo.db.course_duration.find()
+    get_sizes = mongo.db.course_sizes.find()
+    return render_template('addcourse.html', 
+        categories=get_categories,
+        durations=get_durations,
+        sizes=get_sizes)
 
 @app.route('/insert_course', methods=['POST'])
 def insert_course():
@@ -28,7 +34,13 @@ def insert_course():
 def update_course(course_id):
     course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
     get_categories = mongo.db.categories.find()
-    return render_template('editcourse.html', course=course_edit, categories=get_categories)
+    get_durations = mongo.db.course_duration.find()
+    get_sizes = mongo.db.course_sizes.find()
+    return render_template('editcourse.html',
+        course=course_edit,
+        categories=get_categories,
+        durations=get_durations,
+        sizes=get_sizes)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),

@@ -31,28 +31,31 @@
 				<label for="icon_prefix">Date</label>
 			</div>
 		</div>
-		<div class="input-field col s12">
-			<select id="duration" name="duration">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">av_timer</i>
+				<select id="duration" name="duration">
                 <option value="" disabled selected>Choose Course Duration</option>
-                <option value="half day">Half Day</option>
-                <option value="1 day">1 Day</option>
-                <option value="2 days">2 Days</option>
-                <option value="3 days">3 Days</option>
-                <option value="4 days">4 Days</option>
-                <option value="5 days">5 Days</option>
+                {% for dur in durations %}
+                    <option value="{{ dur.duration }}"> {{ dur.duration }}</option>
+                {% endfor %}
             </select>
-			<label>Course Duration</label>
+				<label>Course Duration</label>
+			</div>
 		</div>
-		<div class="input-field col s12" >
-			<select id="max_subscriber" name="max_subscriber">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">group_add</i>
+				<select id="max_subscriber" name="max_subscriber">
                 <option value="" disabled selected>Set Maximum Number of Candidates</option>
-                <option value="5">5 Candidates</option>
-                <option value="10">10 Candidates</option>
-                <option value="15">15 Candidates</option>
+                {% for size in sizes %}
+                    <option value="{{ size.max_subscriber }}"> {{ size.max_subscriber }}</option>
+                {% endfor %}
             </select>
-			<label>Maximum Candidates</label>
+				<label>Maximum Candidates</label>
+			</div>
 		</div>
-        <div class="row">
+		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">mode_edit</i>
 				<textarea name="course_description" id="course_description" class="materialize-textarea"></textarea>
