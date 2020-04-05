@@ -42,6 +42,20 @@ def update_course(course_id):
         durations=get_durations,
         sizes=get_sizes)
 
+@app.route('/edit_course/<course_id>', methods=["POST"])
+def edit_course(course_id):
+    courses=mongo.db.courses
+    courses.update({'_id': ObjectId(course_id)},
+    {
+        'category_name': request.form.get('category_name'),
+        'course_name': request.form.get('course_name'),
+        'date': request.form.get('date'),
+        'duration': request.form.get('duration'),
+        'course_description': request.form.get('course_description'),
+        'max_subscriber': request.form.get('max_subscriber')
+    })
+    return redirect(url_for('get_courses'))
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
             port=int(os.environ.get('PORT', "5000")),

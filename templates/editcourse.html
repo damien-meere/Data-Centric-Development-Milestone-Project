@@ -4,7 +4,7 @@
 <h3>Edit Course</h3>
 
 <div class="row">
-	<form action="{{ url_for('insert_course') }}" method="POST" class="col s12">
+	<form action="{{ url_for('edit_course', course_id=course._id) }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">assignment</i>
@@ -75,7 +75,7 @@
 			</div>
 		</div>
 		<div class="row btn-centre">
-			<button class="btn waves-effect waves-light btn-large light-blue darken-3" type="submit" >Create Course
+			<button class="btn waves-effect waves-light btn-large light-blue darken-3" type="submit" >Edit Course
                 <i class="material-icons right">playlist_add</i>
             </button>
 		</div>
