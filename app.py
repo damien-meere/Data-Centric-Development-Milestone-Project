@@ -24,6 +24,12 @@ def insert_course():
     courses.insert_one(request.form.to_dict())
     return redirect(url_for('get_courses'))
 
+@app.route('/update_course/<course_id>')
+def update_course(course_id):
+    course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
+    get_categories = mongo.db.categories.find()
+    return render_template('editcourse.html', course=course_edit, categories=get_categories)
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
             port=int(os.environ.get('PORT', "5000")),
