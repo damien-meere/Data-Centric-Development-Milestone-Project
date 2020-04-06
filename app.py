@@ -99,7 +99,7 @@ def delete_category(category_id):
 @app.route('/add_category')
 def add_category():
     return render_template("addcategory.html")
-    
+
 
 @app.route('/insert_category', methods=['POST'])
 def insert_category():
@@ -124,7 +124,7 @@ def edit_duration(duration_id):
 
 @app.route('/update_duration/<duration_id>', methods=['POST'])
 def update_duration(duration_id):
-    mongo.db.course_duration.update_one(
+    mongo.db.course_duration.replace_one(
         {'_id': ObjectId(duration_id)},
         {'duration': request.form.get('duration')})
     return redirect(url_for('get_durations'))
@@ -133,6 +133,19 @@ def update_duration(duration_id):
 @app.route('/delete_duration/<duration_id>')
 def delete_duration(duration_id):
     mongo.db.course_duration.remove({'_id': ObjectId(duration_id)})
+    return redirect(url_for('get_durations'))
+
+
+@app.route('/add_duration')
+def add_duration():
+    return render_template("addduration.html")
+    
+
+@app.route('/insert_duration', methods=['POST'])
+def insert_duration():
+    durations = mongo.db.course_duration
+    duration_doc = {'duration': request.form.get('duration')}
+    durations.insert_one(duration_doc)
     return redirect(url_for('get_durations'))
 
 # Course Size Related CRUD Functionality
