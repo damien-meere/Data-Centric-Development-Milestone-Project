@@ -51,8 +51,8 @@ def update_course(course_id):
 
 @app.route('/edit_course/<course_id>', methods=["POST"])
 def edit_course(course_id):
-    courses = mongo.db.courses
-    courses.update({'_id': ObjectId(course_id)},
+    coursedb = mongo.db.courses
+    coursedb.update({'_id': ObjectId(course_id)},
         {
             'category_name': request.form.get('category_name'),
             'course_name': request.form.get('course_name'),
@@ -103,9 +103,9 @@ def add_category():
 
 @app.route('/insert_category', methods=['POST'])
 def insert_category():
-    categories = mongo.db.categories
+    categorydb = mongo.db.categories
     category_doc = {'category_name': request.form.get('category_name')}
-    categories.insert_one(category_doc)
+    categorydb.insert_one(category_doc)
     return redirect(url_for('get_categories'))
 
 # Course Duration Related CRUD Functionality
@@ -139,13 +139,13 @@ def delete_duration(duration_id):
 @app.route('/add_duration')
 def add_duration():
     return render_template("addduration.html")
-    
+
 
 @app.route('/insert_duration', methods=['POST'])
 def insert_duration():
-    durations = mongo.db.course_duration
+    durationdb = mongo.db.course_duration
     duration_doc = {'duration': request.form.get('duration')}
-    durations.insert_one(duration_doc)
+    durationdb.insert_one(duration_doc)
     return redirect(url_for('get_durations'))
 
 # Course Size Related CRUD Functionality
@@ -162,7 +162,7 @@ def edit_size(size_id):
 
 @app.route('/update_size/<size_id>', methods=['POST'])
 def update_size(size_id):
-    mongo.db.course_sizes.update_one(
+    mongo.db.course_sizes.replace_one(
         {'_id': ObjectId(size_id)},
         {'max_subscriber': request.form.get('max_subscriber')})
     return redirect(url_for('get_sizes'))
@@ -171,6 +171,19 @@ def update_size(size_id):
 @app.route('/delete_size/<size_id>')
 def delete_size(size_id):
     mongo.db.course_sizes.remove({'_id': ObjectId(size_id)})
+    return redirect(url_for('get_sizes'))
+
+
+@app.route('/add_size')
+def add_size():
+    return render_template("addsize.html")
+
+
+@app.route('/insert_size', methods=['POST'])
+def insert_size():
+    sizedb = mongo.db.course_sizes
+    size_doc = {'max_subscriber': request.form.get('max_subscriber')}
+    sizedb.insert_one(size_doc)
     return redirect(url_for('get_sizes'))
 
 if __name__ == '__main__':
