@@ -18,3 +18,8 @@
 .nav-colour {
     background-color: #0277bd;
 }
+
+.icon-pad {
+    padding-right: 10px;
+    padding-left: 10px;
+}
