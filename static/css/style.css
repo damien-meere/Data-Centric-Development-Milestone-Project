@@ -19,7 +19,10 @@
     background-color: #0277bd;
 }
 
-.icon-pad {
+.fa-table:before,
+.fa-home:before,
+.fa-cogs:before {
     padding-right: 10px;
-    padding-left: 10px;
+
 }
+
