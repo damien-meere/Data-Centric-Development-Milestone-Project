@@ -90,7 +90,7 @@ by default, HTML5 attributes, such as required, do not get enforced. Therefore t
 
 
 ## Deployment
-Site to be hosted on the Heroku Platform (Include all pertinant links here)
+A live iteration of this project can be found deployed to [Heroku](https://dm-milestone-3-code-institute.herokuapp.com/)
 
 This site is hosted using GitHub pages, deployed directly from the master branch. The deployed site will update automatically upon new commits to the master branch.
 In order for the site to deploy correctly on GitHub pages, the landing page is named `index.html`, and the current live site can be accessed [HERE](https://damien-meere.github.io/interactive_frontend_milestone/).
