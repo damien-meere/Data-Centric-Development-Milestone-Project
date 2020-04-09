@@ -8,14 +8,14 @@
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">assignment</i>
-				<input id="course_name" name="course_name" type="text" class="validate">
+				<input id="course_name" name="course_name" type="text" class="validate" required>
 				<label for="icon_prefix">Course Title</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">poll</i>
-				<select id="category_name" name="category_name">
+				<select id="category_name" name="category_name" required>
                     <option value="" disabled selected>Choose Category</option>
                     {% for cat in categories %}
                     <option value="{{ cat.category_name }}"> {{ cat.category_name.capitalize() }}</option>
@@ -27,14 +27,14 @@
 		<div class="row">
 			<div class="input-field col s12" id="matfix">
 				<i class="material-icons prefix">today</i>
-				<input id="date" name="date" type="text" class="datepicker">
+				<input id="date" name="date" type="text" class="datepicker" required>
 				<label for="icon_prefix">Date</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">av_timer</i>
-				<select id="duration" name="duration">
+				<select id="duration" name="duration" required>
                 <option value="" disabled selected>Choose Course Duration</option>
                 {% for dur in durations %}
                     <option value="{{ dur.duration }}"> {{ dur.duration }}</option>
@@ -46,7 +46,7 @@
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">group_add</i>
-				<select id="max_subscriber" name="max_subscriber">
+				<select id="max_subscriber" name="max_subscriber" required>
                 <option value="" disabled selected>Set Maximum Number of Candidates</option>
                 {% for size in sizes %}
                     <option value="{{ size.max_subscriber }}"> {{ size.max_subscriber }}</option>
@@ -58,7 +58,7 @@
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">mode_edit</i>
-				<textarea name="course_description" id="course_description" class="materialize-textarea"></textarea>
+				<textarea name="course_description" id="course_description" class="materialize-textarea" required></textarea>
 				<label for="icon_telephone">Course Description</label>
 			</div>
 		</div>

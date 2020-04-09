@@ -67,6 +67,10 @@ Another useful feature will be to faciliate ongoing easy to understand feedback 
 
 ## Testing
 
+Form verifiction testing - with valid data,  without any data, with partial data - Compulsory fields
+
+Validation of User stories
+
 
 
 All CSS, HTML and Javascript files were passed through code validators. The [CSS Validator](https://jigsaw.w3.org/css-validator/) & [HTML Validator](https://validator.w3.org)
@@ -81,7 +85,8 @@ is suited to desktop presentation.
 
 ## Testing-Unresolved_Bugs
 
-
+On the course creation page, all the fields are set as required forcing the user to complete all fields befor ethe form can be submitted. Unfortunately, Because each input is readOnly 
+by default, HTML5 attributes, such as required, do not get enforced. Therefore the user can submit the course creation form without specifying the date.
 
 
 ## Deployment
