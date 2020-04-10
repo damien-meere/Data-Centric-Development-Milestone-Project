@@ -82,6 +82,19 @@ def edit_course(course_id):
     return redirect(url_for('get_courses'))
 
 
+@app.route('/edit_course_enroll/<course_id>', methods=["POST"])
+def edit_course(course_id):
+    coursedb = mongo.db.courses
+    coursedb.update({'_id': ObjectId(course_id)},
+        {
+            'subscriber_list': [{
+                "user_name": request.form.get('user_name'),
+                "user_email": request.form.get('user_email'),
+            }]
+        })
+    return redirect(url_for('get_trainee_courses'))
+
+
 @app.route('/delete_course/<course_id>')
 def delete_course(course_id):
     mongo.db.courses.remove({'_id': ObjectId(course_id)})
