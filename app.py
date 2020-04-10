@@ -9,26 +9,30 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI_MILESTONE3', 'mongodb://localhost
 
 mongo = PyMongo(app)
 
-# Course Related CRUD Functionality
+## Course Related CRUD Functionality
 
 
+# call to courses page and supply list of all courses
 @app.route('/')
 @app.route('/get_courses')
 def get_courses():
     return render_template("courses.html", courses=mongo.db.courses.find())
 
 
+# call to trainee courses page and supply list of all courses
 @app.route('/get_trainee_courses')
 def get_trainee_courses():
     return render_template("courses_trainee.html", courses=mongo.db.courses.find())
 
 
+# Call to add course page, supplying options for dropdown menu from 
+# collections in db (category, duration, size)
 @app.route('/add_course')
 def add_course():
     get_categories = mongo.db.categories.find()
     get_durations = mongo.db.course_duration.find()
     get_sizes = mongo.db.course_sizes.find()
-    return render_template('addcourse.html', 
+    return render_template('addcourse.html',
         categories=get_categories,
         durations=get_durations,
         sizes=get_sizes)
@@ -77,7 +81,9 @@ def enroll_course(course_id):
 @app.route('/edit_course/<course_id>', methods=["POST"])
 def edit_course(course_id):
     coursedb = mongo.db.courses
-    #$set operator required to ensure we only update the requisit fields, and not just creet a new object in the database
+    # $set operator required to ensure we only update the requisit fields, and
+    # not create a new object in the database containing only the data from the
+    # request.
     coursedb.update_one({'_id': ObjectId(course_id)},
         {"$set": {
             'category_name': request.form.get('category_name'),
@@ -92,8 +98,9 @@ def edit_course(course_id):
 
 @app.route('/edit_course_enroll/<course_id>', methods=["POST"])
 def edit_course_enroll(course_id):
-    # Here the enrollment form is operted on. Need to first check if the course limit has been exceeded
-    # by accessing the max subscriber that's been set, and the total subscriber number
+    # Here the enrollment form is operted on. Need to first check if the course
+    # limit has been exceeded by accessing the max subscriber that's been set,
+    # and the total subscriber number
     coursedb = mongo.db.courses
     target_course_size = coursedb.find_one({'_id': ObjectId(course_id)}, {"max_subscriber": 1})
     target_course_subscribers = coursedb.find_one({'_id': ObjectId(course_id)}, {"subscriber_list": 1})
@@ -102,10 +109,10 @@ def edit_course_enroll(course_id):
     subscribers = len(target_course_subscribers["subscriber_list"])
     # If statement to compare the max course size with current number of subscribers
     # if there's still space add the user to the database
-    #print(max_size)
-    #print(subscribers)
+    # print(max_size)
+    # print(subscribers)
     if subscribers < max_size:
-        #print("Still space")
+        # print("Still space")
         coursedb.update_one({'_id': ObjectId(course_id)},
         {"$push":
             {"subscriber_list":
@@ -115,15 +122,19 @@ def edit_course_enroll(course_id):
                 } 
             }
         })
+        # direct to successful enrollment page
         return redirect(url_for('enrollment_success'))
     else:
-        print ("Course Full")
+        # print ("Course Full")
+        # direct to failure page
         return redirect(url_for('enrollment_fail'))
+
 
 # display result of successful enrollment
 @app.route('/enrollment_success')
 def enrollment_success():
     return render_template("enrollmentsuccess.html")
+
 
 # display result of unsuccessful enrollment
 @app.route('/enrollment_fail')
@@ -133,22 +144,27 @@ def enrollment_fail():
 
 @app.route('/delete_course/<course_id>')
 def delete_course(course_id):
+    # gather specified course ID and call remove function
     mongo.db.courses.remove({'_id': ObjectId(course_id)})
     return redirect(url_for('get_courses'))
 
-# Category Related CRUD Functionality
+
+## Category Related CRUD Functionality
+
 
 @app.route('/get_categories')
 def get_categories():
     return render_template("categories.html", categories=mongo.db.categories.find())
 
 
+# Allow choice of category to edit
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
     category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
 
 
+# edit specific course
 @app.route('/update_category/<category_id>', methods=['POST'])
 def update_category(category_id):
     mongo.db.categories.update(
@@ -157,17 +173,20 @@ def update_category(category_id):
     return redirect(url_for('get_categories'))
 
 
+# delete specified category
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
 
 
+# call add category page
 @app.route('/add_category')
 def add_category():
     return render_template("addcategory.html")
 
 
+# insert new catagory to database
 @app.route('/insert_category', methods=['POST'])
 def insert_category():
     categorydb = mongo.db.categories
@@ -175,20 +194,22 @@ def insert_category():
     categorydb.insert_one(category_doc)
     return redirect(url_for('get_categories'))
 
-# Course Duration Related CRUD Functionality
+## Course Duration Related CRUD Functionality
 
 
+# get durations from database
 @app.route('/get_durations')
 def get_durations():
     return render_template("durations.html", durations=mongo.db.course_duration.find())
 
-
+# Allow choice of duration to edit
 @app.route('/edit_duration/<duration_id>')
 def edit_duration(duration_id):
     return render_template('editduration.html',
     duration=mongo.db.course_duration.find_one({'_id': ObjectId(duration_id)}))
 
 
+# edit specified duration
 @app.route('/update_duration/<duration_id>', methods=['POST'])
 def update_duration(duration_id):
     mongo.db.course_duration.replace_one(
@@ -197,17 +218,20 @@ def update_duration(duration_id):
     return redirect(url_for('get_durations'))
 
 
+# delete specified duration
 @app.route('/delete_duration/<duration_id>')
 def delete_duration(duration_id):
     mongo.db.course_duration.remove({'_id': ObjectId(duration_id)})
     return redirect(url_for('get_durations'))
 
 
+# call addduration page
 @app.route('/add_duration')
 def add_duration():
     return render_template("addduration.html")
 
 
+# insert new duration value to database
 @app.route('/insert_duration', methods=['POST'])
 def insert_duration():
     durationdb = mongo.db.course_duration
@@ -215,18 +239,23 @@ def insert_duration():
     durationdb.insert_one(duration_doc)
     return redirect(url_for('get_durations'))
 
-# Course Size Related CRUD Functionality
+
+## Course Size Related CRUD Functionality
+
+# get sizes from database
 @app.route('/get_sizes')
 def get_sizes():
     return render_template("sizes.html", sizes=mongo.db.course_sizes.find())
 
 
+# Allow choice of size value to edit
 @app.route('/edit_size/<size_id>')
 def edit_size(size_id):
     return render_template('editsize.html',
     size=mongo.db.course_sizes.find_one({'_id': ObjectId(size_id)}))
 
 
+# edit specified size
 @app.route('/update_size/<size_id>', methods=['POST'])
 def update_size(size_id):
     mongo.db.course_sizes.replace_one(
@@ -235,23 +264,27 @@ def update_size(size_id):
     return redirect(url_for('get_sizes'))
 
 
+# delete specified size
 @app.route('/delete_size/<size_id>')
 def delete_size(size_id):
     mongo.db.course_sizes.remove({'_id': ObjectId(size_id)})
     return redirect(url_for('get_sizes'))
 
 
+# Call to addsize page
 @app.route('/add_size')
 def add_size():
     return render_template("addsize.html")
 
 
+# insert new size value to database
 @app.route('/insert_size', methods=['POST'])
 def insert_size():
     sizedb = mongo.db.course_sizes
     size_doc = {'max_subscriber': request.form.get('max_subscriber')}
     sizedb.insert_one(size_doc)
     return redirect(url_for('get_sizes'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
