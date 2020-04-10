@@ -18,6 +18,11 @@ def get_courses():
     return render_template("courses.html", courses=mongo.db.courses.find())
 
 
+@app.route('/get_trainee_courses')
+def get_trainee_courses():
+    return render_template("courses_trainee.html", courses=mongo.db.courses.find())
+
+
 @app.route('/add_course')
 def add_course():
     get_categories = mongo.db.categories.find()
