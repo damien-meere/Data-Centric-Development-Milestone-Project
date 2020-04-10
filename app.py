@@ -37,7 +37,14 @@ def add_course():
 @app.route('/insert_course', methods=['POST'])
 def insert_course():
     courses = mongo.db.courses
-    courses.insert_one(request.form.to_dict())
+    """
+    HTML Form cannot inject an Array object, therefore when creating a new
+    course, we have to edit the dict object to initiate the course with the
+    subscriber_list field set as an empty array.
+    """
+    course_insertion = request.form.to_dict()
+    course_insertion.update({'subscriber_list': []})
+    courses.insert_one(course_insertion)
     return redirect(url_for('get_courses'))
 
 
@@ -70,29 +77,58 @@ def enroll_course(course_id):
 @app.route('/edit_course/<course_id>', methods=["POST"])
 def edit_course(course_id):
     coursedb = mongo.db.courses
-    coursedb.update({'_id': ObjectId(course_id)},
-        {
+    #$set operator required to ensure we only update the requisit fields, and not just creet a new object in the database
+    coursedb.update_one({'_id': ObjectId(course_id)},
+        {"$set": {
             'category_name': request.form.get('category_name'),
             'course_name': request.form.get('course_name'),
             'date': request.form.get('date'),
             'duration': request.form.get('duration'),
             'course_description': request.form.get('course_description'),
             'max_subscriber': request.form.get('max_subscriber')
-        })
+        }})
     return redirect(url_for('get_courses'))
 
 
 @app.route('/edit_course_enroll/<course_id>', methods=["POST"])
-def edit_course(course_id):
+def edit_course_enroll(course_id):
+    # Here the enrollment form is operted on. Need to first check if the course limit has been exceeded
+    # by accessing the max subscriber that's been set, and the total subscriber number
     coursedb = mongo.db.courses
-    coursedb.update({'_id': ObjectId(course_id)},
-        {
-            'subscriber_list': [{
-                "user_name": request.form.get('user_name'),
-                "user_email": request.form.get('user_email'),
-            }]
+    target_course_size = coursedb.find_one({'_id': ObjectId(course_id)}, {"max_subscriber": 1})
+    target_course_subscribers = coursedb.find_one({'_id': ObjectId(course_id)}, {"subscriber_list": 1})
+    # Cast returned max_subscriber value to Integer for comparison with subscriber number
+    max_size = int (target_course_size["max_subscriber"])
+    subscribers = len(target_course_subscribers["subscriber_list"])
+    # If statement to compare the max course size with current number of subscribers
+    # if there's still space add the user to the database
+    #print(max_size)
+    #print(subscribers)
+    if subscribers < max_size:
+        #print("Still space")
+        coursedb.update_one({'_id': ObjectId(course_id)},
+        {"$push":
+            {"subscriber_list":
+                {
+                    "user_name": request.form.get('user_name'),
+                    "user_email": request.form.get('user_email')
+                } 
+            }
         })
-    return redirect(url_for('get_trainee_courses'))
+        return redirect(url_for('enrollment_success'))
+    else:
+        print ("Course Full")
+        return redirect(url_for('enrollment_fail'))
+
+# display result of successful enrollment
+@app.route('/enrollment_success')
+def enrollment_success():
+    return render_template("enrollmentsuccess.html")
+
+# display result of unsuccessful enrollment
+@app.route('/enrollment_fail')
+def enrollment_fail():
+    return render_template("enrollmentfail.html")
 
 
 @app.route('/delete_course/<course_id>')
