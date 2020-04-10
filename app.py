@@ -11,12 +11,31 @@ mongo = PyMongo(app)
 
 ## Course Related CRUD Functionality
 
-
-# call to courses page and supply list of all courses
+# call to trainee courses page and supply list of all courses
 @app.route('/')
 @app.route('/get_courses')
 def get_courses():
-    return render_template("courses.html", courses=mongo.db.courses.find())
+    courses_data = mongo.db.courses.find()
+    # need to get the percentage of number of subscribers versus the max subscribers
+    # this value will then be placed back within the course object, to be harnassed
+    # within the front end to display the subscription level progress bar
+
+    # iterate pymongo documents with a for loop
+    percentage_dict={}
+
+    for doc in courses_data:
+        #print(doc)
+        max_sub = int(doc["max_subscriber"])
+        total_sub = len(doc["subscriber_list"])
+        #create subscriber percentage value as a string
+        course_percentage = "{:.0%}".format(total_sub/max_sub)
+        percentage_dict.update({doc["_id"]: course_percentage})
+    
+    print(percentage_dict)
+
+
+    #passing percentage values to render_template
+    return render_template("courses.html", courses=mongo.db.courses.find(), percentages=percentage_dict)
 
 
 # call to trainee courses page and supply list of all courses
