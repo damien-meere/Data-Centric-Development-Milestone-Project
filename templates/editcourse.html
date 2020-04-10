@@ -51,10 +51,12 @@
 				<label>Course Duration</label>
 			</div>
 		</div>
+        <!-- Max Subscriber Field disabled to ensure that the once created, and enrolling, there won' be issues with the database 
+        (max subscriber set below exisitng number of subscribers-->
 		<div class="row">
 			<div class="input-field col s12">
 				<i class="material-icons prefix">group_add</i>
-				<select id="max_subscriber" name="max_subscriber" required>
+				<select id="max_subscriber" name="max_subscriber" disabled>
                 <option value="" disabled selected>Set Maximum Number of Candidates</option>
                 {% for size in sizes %}
                     {% if size.max_subscriber == course.max_subscriber %}
