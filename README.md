@@ -44,14 +44,18 @@ A live demo of the project can be found deployed to Heroku [Here](https://dm-mil
 
 
 ## Technologies
-1. HTML
-2. CSS
-3. Javascript
-4. Python + Flask
+This project utilises the following technologies:
+1. [HTML]((https://developer.mozilla.org/en-US/docs/Web/HTML))
+2. [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+3. [Javascript](https://www.w3schools.com/jsref/)
+4. [Python]()
 5. [MongoDB](https://www.mongodb.com/)
 6. [Materialize](http://archives.materializecss.com/0.100.2/) (0.100.2)
 7. [FontAwesome](https://fontawesome.com/)
-8. JQuery
+8. [JQuery](https://jquery.com)
+9. [Git](https://git-scm.com/)
+10. [Flask]()
+
 
 ## Site-Notes
 
