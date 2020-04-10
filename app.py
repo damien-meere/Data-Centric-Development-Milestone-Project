@@ -25,7 +25,7 @@ def get_trainee_courses():
     return render_template("courses_trainee.html", courses=mongo.db.courses.find())
 
 
-# Call to add course page, supplying options for dropdown menu from 
+# Call to add course page, supplying options for dropdown menu from
 # collections in db (category, duration, size)
 @app.route('/add_course')
 def add_course():
@@ -38,6 +38,7 @@ def add_course():
         sizes=get_sizes)
 
 
+# Insert new course to database, pull requisit data from request object
 @app.route('/insert_course', methods=['POST'])
 def insert_course():
     courses = mongo.db.courses
@@ -51,7 +52,8 @@ def insert_course():
     courses.insert_one(course_insertion)
     return redirect(url_for('get_courses'))
 
-
+# call to editcourse page with requisite data from 
+# collections in db (category, duration, size)
 @app.route('/update_course/<course_id>')
 def update_course(course_id):
     course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
@@ -59,19 +61,6 @@ def update_course(course_id):
     get_durations = mongo.db.course_duration.find()
     get_sizes = mongo.db.course_sizes.find()
     return render_template('editcourse.html',
-        course=course_edit,
-        categories=get_categories,
-        durations=get_durations,
-        sizes=get_sizes)
-
-
-@app.route('/enroll_course/<course_id>')
-def enroll_course(course_id):
-    course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
-    get_categories = mongo.db.categories.find()
-    get_durations = mongo.db.course_duration.find()
-    get_sizes = mongo.db.course_sizes.find()
-    return render_template('enrollcourse.html',
         course=course_edit,
         categories=get_categories,
         durations=get_durations,
@@ -95,7 +84,29 @@ def edit_course(course_id):
         }})
     return redirect(url_for('get_courses'))
 
+# delete specified course from database
+@app.route('/delete_course/<course_id>')
+def delete_course(course_id):
+    # gather specified course ID and call remove function
+    mongo.db.courses.remove({'_id': ObjectId(course_id)})
+    return redirect(url_for('get_courses'))
 
+
+# call to trainee enrollment page
+@app.route('/enroll_course/<course_id>')
+def enroll_course(course_id):
+    course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
+    get_categories = mongo.db.categories.find()
+    get_durations = mongo.db.course_duration.find()
+    get_sizes = mongo.db.course_sizes.find()
+    return render_template('enrollcourse.html',
+        course=course_edit,
+        categories=get_categories,
+        durations=get_durations,
+        sizes=get_sizes)
+
+
+# Operate on enrollment request
 @app.route('/edit_course_enroll/<course_id>', methods=["POST"])
 def edit_course_enroll(course_id):
     # Here the enrollment form is operted on. Need to first check if the course
@@ -140,13 +151,6 @@ def enrollment_success():
 @app.route('/enrollment_fail')
 def enrollment_fail():
     return render_template("enrollmentfail.html")
-
-
-@app.route('/delete_course/<course_id>')
-def delete_course(course_id):
-    # gather specified course ID and call remove function
-    mongo.db.courses.remove({'_id': ObjectId(course_id)})
-    return redirect(url_for('get_courses'))
 
 
 ## Category Related CRUD Functionality
