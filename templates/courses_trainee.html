@@ -31,15 +31,15 @@
 		</div>
 		<div class="collapsible-body">
 			<div class="row">
-				<div class="col s6">
+				<div class="col s6 m12">
 					<i class="material-icons prefix">assignment</i><label for="icon_prefix">Course Title</label>
 					<input disabled id="course_name" name="course_name" type="text" class="validate" value="{{course.course_name}}" style="color: #263238;">
 			    </div>
-				<div class="col s3">
+				<div class="col s3 m12">
 					<i class="material-icons prefix">access_time</i><label for="icon_prefix">Course Duration</label>
 					<input disabled id="course_duration" name="course_duration" type="text" class="validate" value="{{course.duration}}" style="color: #263238;">
 			    </div>
-				<div class="col s3">
+				<div class="col s3 m12">
 					<i class="material-icons prefix">date_range</i><label for="icon_prefix">Course Start Date</label>
 					<input disabled id="course_date" name="course_date" type="text" class="validate" value="{{course.date}}" style="color: #263238;">
 			    </div>
@@ -51,20 +51,13 @@
 					</div>
 				</div>
 
-				<h2>Session Subscription Level</h2>
-				<!-- This section is to ilustrate to the user the uptake of the class current subscribers V Max-subscribers-->		
-                <div class="w3-light-grey w3-round">
-					<div class="w3-container w3-blue w3-round w3-centre" style="width:25%">25%
-                    </div>
-				</div><br>
 
-								<span>{{course.max_subscriber}}</span>
-								<span>{{course.subscriber_list}}</span>
 
 
 
 				<div class="row btn-centre">
-					
+					<a href="{{ url_for('enroll_course', course_id = course._id) }}"
+						class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>Enroll in Course</a>
 				</div>
 			</div>
 		</div>

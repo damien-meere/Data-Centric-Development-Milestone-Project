@@ -21,7 +21,10 @@
 
 .fa-table:before,
 .fa-home:before,
-.fa-cogs:before {
+.fa-cogs:before,
+.fa-chalkboard:before,
+.fa-chalkboard-teacher:before,
+.fa-at:before {
     padding-right: 10px;
 
 }

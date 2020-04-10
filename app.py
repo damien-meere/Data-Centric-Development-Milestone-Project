@@ -54,6 +54,19 @@ def update_course(course_id):
         sizes=get_sizes)
 
 
+@app.route('/enroll_course/<course_id>')
+def enroll_course(course_id):
+    course_edit = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
+    get_categories = mongo.db.categories.find()
+    get_durations = mongo.db.course_duration.find()
+    get_sizes = mongo.db.course_sizes.find()
+    return render_template('enrollcourse.html',
+        course=course_edit,
+        categories=get_categories,
+        durations=get_durations,
+        sizes=get_sizes)
+
+
 @app.route('/edit_course/<course_id>', methods=["POST"])
 def edit_course(course_id):
     coursedb = mongo.db.courses
