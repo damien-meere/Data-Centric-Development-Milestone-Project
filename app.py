@@ -5,37 +5,21 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'trainingDB'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI_MILESTONE3', 'mongodb://localhost')
+app.config["MONGO_URI"] = os.getenv(
+    'MONGO_URI_MILESTONE3', 'mongodb://localhost')
 
 mongo = PyMongo(app)
 
-## Course Related CRUD Functionality
+# Course Related CRUD Functionality
 
 # call to trainee courses page and supply list of all courses
 @app.route('/')
 @app.route('/get_courses')
 def get_courses():
-    courses_data = mongo.db.courses.find()
-    # need to get the percentage of number of subscribers versus the max subscribers
-    # this value will then be placed back within the course object, to be harnassed
-    # within the front end to display the subscription level progress bar
 
-    # iterate pymongo documents with a for loop
-    percentage_dict={}
+    print()
 
-    for doc in courses_data:
-        #print(doc)
-        max_sub = int(doc["max_subscriber"])
-        total_sub = len(doc["subscriber_list"])
-        #create subscriber percentage value as a string
-        course_percentage = "{:.0%}".format(total_sub/max_sub)
-        percentage_dict.update({doc["_id"]: course_percentage})
-    
-    print(percentage_dict)
-
-
-    #passing percentage values to render_template
-    return render_template("courses.html", courses=mongo.db.courses.find(), percentages=percentage_dict)
+    return render_template("courses.html", courses=mongo.db.courses.find())
 
 
 # call to trainee courses page and supply list of all courses
@@ -52,9 +36,9 @@ def add_course():
     get_durations = mongo.db.course_duration.find()
     get_sizes = mongo.db.course_sizes.find()
     return render_template('addcourse.html',
-        categories=get_categories,
-        durations=get_durations,
-        sizes=get_sizes)
+                           categories=get_categories,
+                           durations=get_durations,
+                           sizes=get_sizes)
 
 
 # Insert new course to database, pull requisit data from request object
@@ -68,10 +52,11 @@ def insert_course():
     """
     course_insertion = request.form.to_dict()
     course_insertion.update({'subscriber_list': []})
+    course_insertion.update({'percentage': "0%"})
     courses.insert_one(course_insertion)
     return redirect(url_for('get_courses'))
 
-# call to editcourse page with requisite data from 
+# call to editcourse page with requisite data from
 # collections in db (category, duration, size)
 @app.route('/update_course/<course_id>')
 def update_course(course_id):
@@ -80,10 +65,10 @@ def update_course(course_id):
     get_durations = mongo.db.course_duration.find()
     get_sizes = mongo.db.course_sizes.find()
     return render_template('editcourse.html',
-        course=course_edit,
-        categories=get_categories,
-        durations=get_durations,
-        sizes=get_sizes)
+                           course=course_edit,
+                           categories=get_categories,
+                           durations=get_durations,
+                           sizes=get_sizes)
 
 
 @app.route('/edit_course/<course_id>', methods=["POST"])
@@ -93,14 +78,14 @@ def edit_course(course_id):
     # not create a new object in the database containing only the data from the
     # request.
     coursedb.update_one({'_id': ObjectId(course_id)},
-        {"$set": {
-            'category_name': request.form.get('category_name'),
-            'course_name': request.form.get('course_name'),
-            'date': request.form.get('date'),
-            'duration': request.form.get('duration'),
-            'course_description': request.form.get('course_description'),
-            'max_subscriber': request.form.get('max_subscriber')
-        }})
+                        {"$set": {
+                            'category_name': request.form.get('category_name'),
+                            'course_name': request.form.get('course_name'),
+                            'date': request.form.get('date'),
+                            'duration': request.form.get('duration'),
+                            'course_description': request.form.get('course_description'),
+                            'max_subscriber': request.form.get('max_subscriber')
+                        }})
     return redirect(url_for('get_courses'))
 
 # delete specified course from database
@@ -119,10 +104,10 @@ def enroll_course(course_id):
     get_durations = mongo.db.course_duration.find()
     get_sizes = mongo.db.course_sizes.find()
     return render_template('enrollcourse.html',
-        course=course_edit,
-        categories=get_categories,
-        durations=get_durations,
-        sizes=get_sizes)
+                           course=course_edit,
+                           categories=get_categories,
+                           durations=get_durations,
+                           sizes=get_sizes)
 
 
 # Operate on enrollment request
@@ -132,26 +117,46 @@ def edit_course_enroll(course_id):
     # limit has been exceeded by accessing the max subscriber that's been set,
     # and the total subscriber number
     coursedb = mongo.db.courses
-    target_course_size = coursedb.find_one({'_id': ObjectId(course_id)}, {"max_subscriber": 1})
-    target_course_subscribers = coursedb.find_one({'_id': ObjectId(course_id)}, {"subscriber_list": 1})
-    # Cast returned max_subscriber value to Integer for comparison with subscriber number
-    max_size = int (target_course_size["max_subscriber"])
+    target_course_size = coursedb.find_one(
+        {'_id': ObjectId(course_id)}, {"max_subscriber": 1})
+    target_course_subscribers = coursedb.find_one(
+        {'_id': ObjectId(course_id)}, {"subscriber_list": 1})
+    # Cast returned max_subscriber value to Integer for comparison with
+    # subscriber number
+    max_size = int(target_course_size["max_subscriber"])
     subscribers = len(target_course_subscribers["subscriber_list"])
-    # If statement to compare the max course size with current number of subscribers
-    # if there's still space add the user to the database
-    # print(max_size)
-    # print(subscribers)
+
+    # If statement to compare the max course size with current number of
+    # subscribers if there's still space add the user to the database
     if subscribers < max_size:
-        # print("Still space")
+        # need to get the percentage of number of subscribers versus the max
+        # subscribers this value will then be placed back within the course
+        # object, to be harnassed within the front end to display the
+        # subscription level progress bar create subscriber percentage value
+        # as a string (increment subscriber total)
+        subscribers += 1
+        course_percentage = "{:.0%}".format(subscribers/max_size)
+
+        # $push used to add the new user record into the subscriber field without 
+        # overwriting what's already in place
         coursedb.update_one({'_id': ObjectId(course_id)},
-        {"$push":
-            {"subscriber_list":
-                {
-                    "user_name": request.form.get('user_name'),
-                    "user_email": request.form.get('user_email')
-                } 
-            }
-        })
+                            {"$push":
+                             {"subscriber_list":
+                              {
+                                  "user_name": request.form.get('user_name'),
+                                  "user_email": request.form.get('user_email')
+                              },
+                              }
+                             }
+                            )
+        # $set operator required to ensure we only update the requisit fields, and
+        # not create a new object in the database containing only the data from the
+        # request.
+        coursedb.update_one({'_id': ObjectId(course_id)},
+                            {"$set": {
+                                "percentage": course_percentage
+                            }})
+
         # direct to successful enrollment page
         return redirect(url_for('enrollment_success'))
     else:
@@ -172,7 +177,7 @@ def enrollment_fail():
     return render_template("enrollmentfail.html")
 
 
-## Category Related CRUD Functionality
+# Category Related CRUD Functionality
 
 
 @app.route('/get_categories')
@@ -184,7 +189,7 @@ def get_categories():
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
-    category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
+                           category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
 
 
 # edit specific course
@@ -217,7 +222,7 @@ def insert_category():
     categorydb.insert_one(category_doc)
     return redirect(url_for('get_categories'))
 
-## Course Duration Related CRUD Functionality
+# Course Duration Related CRUD Functionality
 
 
 # get durations from database
@@ -229,7 +234,7 @@ def get_durations():
 @app.route('/edit_duration/<duration_id>')
 def edit_duration(duration_id):
     return render_template('editduration.html',
-    duration=mongo.db.course_duration.find_one({'_id': ObjectId(duration_id)}))
+                           duration=mongo.db.course_duration.find_one({'_id': ObjectId(duration_id)}))
 
 
 # edit specified duration
@@ -263,7 +268,7 @@ def insert_duration():
     return redirect(url_for('get_durations'))
 
 
-## Course Size Related CRUD Functionality
+# Course Size Related CRUD Functionality
 
 # get sizes from database
 @app.route('/get_sizes')
@@ -275,7 +280,7 @@ def get_sizes():
 @app.route('/edit_size/<size_id>')
 def edit_size(size_id):
     return render_template('editsize.html',
-    size=mongo.db.course_sizes.find_one({'_id': ObjectId(size_id)}))
+                           size=mongo.db.course_sizes.find_one({'_id': ObjectId(size_id)}))
 
 
 # edit specified size

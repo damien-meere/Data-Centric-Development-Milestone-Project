@@ -58,11 +58,10 @@
 				<h2>Session Subscription Level</h2>
 				<!-- This section is to ilustrate to the user the uptake of the class current subscribers V Max-subscribers-->		
                 <div class="w3-light-grey w3-round">
-					<div class="w3-container w3-blue w3-round w3-centre" style="width:25%">25%
+
+					<div class="w3-container w3-blue w3-round w3-centre" style="width:{{course.percentage}}">{{course.percentage}}
                     </div>
 				</div><br>
-
-								<span>{{course.percentage}}</span>
 
 
 
@@ -81,7 +80,10 @@
 </ul>
 
 
-
+<script>
+    var carName = "Volvo";
+    document.getElementById("demo").innerHTML = carName;
+</script>
 
 
 
