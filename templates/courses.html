@@ -54,17 +54,21 @@
 
 					</div>
 				</div>
-
-				<h2>Session Subscription Level</h2>
-				<!-- This section is to ilustrate to the user the uptake of the class current subscribers V Max-subscribers-->		
-                <div class="w3-light-grey w3-round">
-
-					<div class="w3-container w3-blue w3-round w3-centre" style="width:{{course.percentage}}">{{course.percentage}}
+                <div class="row">
+				    <h3>Session Subscription</h3>
+                    <div class="col s3">
+					    <i class="material-icons prefix">date_range</i><label for="icon_prefix">Total Spaces On course</label>
+					    <input disabled id="" name="max_subscriber" type="text" class="validate" value="{{course.max_subscriber}}" style="color: #263238;">
+			        </div>
+                    <div class="col s9">
+                        <h4>Course Uptake</h4>
+				        <!-- This section is to ilustrate to the user the uptake of the class current subscribers V Max-subscribers-->		
+                        <div class="w3-light-grey w3-round">
+					        <div class="w3-container w3-blue w3-round w3-centre" style="width:{{course.percentage}}">{{course.percentage}}
+                            </div>
+				        </div><br>
                     </div>
-				</div><br>
-
-
-
+                </div>
 				<div class="row btn-centre">
 					<a class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>View Enrollments</a>
 					<a href="{{ url_for('update_course', course_id = course._id) }}"
