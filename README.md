@@ -33,7 +33,7 @@ area within the site.
 A live demo of the project can be found deployed to Heroku [Here](https://dm-milestone-3-code-institute.herokuapp.com/)
 
 ## Database
-
+![Database Structure](documentation/database_v2.jpg)
 
 
 
