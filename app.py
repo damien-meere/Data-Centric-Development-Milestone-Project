@@ -16,9 +16,6 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_courses')
 def get_courses():
-
-    print()
-
     return render_template("courses.html", courses=mongo.db.courses.find())
 
 
@@ -163,6 +160,15 @@ def edit_course_enroll(course_id):
         # print ("Course Full")
         # direct to failure page
         return redirect(url_for('enrollment_fail'))
+
+
+# show list of enrollments for a course
+@app.route('/show_enrollments/<course_id>')
+def show_enrollments(course_id):
+    # gather specified course ID and call remove function
+    course = mongo.db.courses.find_one({'_id': ObjectId(course_id)})
+    return render_template('showenrollments.html',
+                           course=course)
 
 
 # display result of successful enrollment
