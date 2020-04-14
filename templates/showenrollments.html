@@ -5,6 +5,7 @@
 
 <div class="row">
 	<div class="row">
+    <!-- Display specific course details first -->
 		<div class="col s6">
 			<i class="material-icons prefix">assignment</i><label for="icon_prefix">Course Title</label>
 			<input disabled id="course_name" name="course_name" type="text" class="validate" value="{{course.course_name}}" required style="color: #263238;">
@@ -18,26 +19,41 @@
 			<input disabled id="course_date" name="course_date" type="text" class="validate" value="{{course.date}}" style="color: #263238;">
 		</div>
     </div>
-
-
-    <!-- Display list of trainees for the course in appropriate format-->
-
-
-
-    <dl>
-        <dt>Key</dt>
-        <dd>Value</dd>
-        <dt>Another key</dt>
-        <dd>Another value</dd>
-    </dl>
-
+    <!-- Display list of trainees for the course in appropriate format -->
+    {% if course.subscriber_list|length %}
+        <!-- subscriber_list is not empty, so display the subscribers -->
+        {% for user in course.subscriber_list %}
+        <div class="collapsible-header row">
+			<div class="col s6 course_title">
+				<div>
+					Name: <strong> {{user.user_name}} </strong>
+				</div>
+			</div>
+			<div class="col s6">
+				<div>
+					Email: <strong> {{user.user_email}}</strong>
+				</div>
+			</div>
+		</div>
+    {% endfor %}
+    {% else %}
+        <!-- subscriber_list is empty -->
+        <div class="row" >
+            <div class="col s6 offset-s3">
+                <div class="card blue-grey darken-1" style="text-align: center">
+                    <div class="card-content white-text">
+                    <span class="card-title">0 Subscribers</span>
+                    <p>There are currently no subscribers for the {{course.course_name}} course, due to start on {{course.date}}.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
     <div class="row btn-centre">
 		<a href="{{ url_for('get_courses') }}"
 			class="waves-effect waves-light btn btn-detail light-blue darken-3"><i class="material-icons right">cloud</i>Return to Course List</a>
 	</div>
-
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
