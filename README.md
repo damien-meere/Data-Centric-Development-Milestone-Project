@@ -41,7 +41,7 @@ A live demo of the project can be found deployed to Heroku [Here](https://dm-mil
 ## UX+User-Stories
 
 
-
+discuss responiveness functionality
 
 ## Technologies
 This project utilises the following technologies:
@@ -75,6 +75,7 @@ Form verifiction testing - with valid data,  without any data, with partial data
 
 Validation of User stories
 
+Responsive Design
 
 
 All CSS, HTML and Javascript files were passed through code validators. The [CSS Validator](https://jigsaw.w3.org/css-validator/) & [HTML Validator](https://validator.w3.org)
