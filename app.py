@@ -12,6 +12,7 @@ mongo = PyMongo(app)
 
 # Course Related CRUD Functionality
 
+
 # call to trainee courses page and supply list of all courses
 @app.route('/')
 @app.route('/get_courses')
@@ -53,6 +54,7 @@ def insert_course():
     courses.insert_one(course_insertion)
     return redirect(url_for('get_courses'))
 
+
 # call to editcourse page with requisite data from
 # collections in db (category, duration, size)
 @app.route('/update_course/<course_id>')
@@ -85,6 +87,7 @@ def edit_course(course_id):
                         }})
     return redirect(url_for('get_courses'))
 
+
 # delete specified course from database
 @app.route('/delete_course/<course_id>')
 def delete_course(course_id):
@@ -92,6 +95,8 @@ def delete_course(course_id):
     mongo.db.courses.remove({'_id': ObjectId(course_id)})
     return redirect(url_for('get_courses'))
 
+
+## Enrollment-specific functions
 
 # call to trainee enrollment page
 @app.route('/enroll_course/<course_id>')
@@ -122,7 +127,6 @@ def edit_course_enroll(course_id):
     # subscriber number
     max_size = int(target_course_size["max_subscriber"])
     subscribers = len(target_course_subscribers["subscriber_list"])
-
     # If statement to compare the max course size with current number of
     # subscribers if there's still space add the user to the database
     if subscribers < max_size:
@@ -133,7 +137,6 @@ def edit_course_enroll(course_id):
         # as a string (increment subscriber total)
         subscribers += 1
         course_percentage = "{:.0%}".format(subscribers/max_size)
-
         # $push used to add the new user record into the subscriber field without 
         # overwriting what's already in place
         coursedb.update_one({'_id': ObjectId(course_id)},
@@ -153,7 +156,6 @@ def edit_course_enroll(course_id):
                             {"$set": {
                                 "percentage": course_percentage
                             }})
-
         # direct to successful enrollment page
         return redirect(url_for('enrollment_success'))
     else:
@@ -183,9 +185,9 @@ def enrollment_fail():
     return render_template("enrollmentfail.html")
 
 
-# Category Related CRUD Functionality
+## Category Related CRUD Functionality
 
-
+# Display list of available categories
 @app.route('/get_categories')
 def get_categories():
     return render_template("categories.html", categories=mongo.db.categories.find())
@@ -228,6 +230,7 @@ def insert_category():
     categorydb.insert_one(category_doc)
     return redirect(url_for('get_categories'))
 
+
 # Course Duration Related CRUD Functionality
 
 
@@ -235,6 +238,7 @@ def insert_category():
 @app.route('/get_durations')
 def get_durations():
     return render_template("durations.html", durations=mongo.db.course_duration.find())
+
 
 # Allow choice of duration to edit
 @app.route('/edit_duration/<duration_id>')
@@ -275,6 +279,7 @@ def insert_duration():
 
 
 # Course Size Related CRUD Functionality
+
 
 # get sizes from database
 @app.route('/get_sizes')

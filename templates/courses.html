@@ -22,12 +22,12 @@
 				<i class="material-icons">assignment</i>
 				{% endif %}
 			</div>
-			<div class="col s6 course_title">
+			<div class="col s11 m6 course_title">
 				<div>
 					<strong>{{course.course_name}} </strong>
 				</div>
 			</div>
-			<div class="col s5">
+			<div class="col s12 m5">
 				<div>
 					<strong>Start Date -</strong> {{course.date}}
 				</div>
@@ -35,32 +35,32 @@
 		</div>
 		<div class="collapsible-body">
 			<div class="row">
-				<div class="col s6 m12">
-					<i class="material-icons prefix">assignment</i><label for="icon_prefix">Course Title</label>
+				<div class="col s12 m6">
+					<i class="material-icons prefix">assignment</i><label for="icon_prefix"> Course Title</label>
 					<input disabled id="course_name" name="course_name" type="text" class="validate" value="{{course.course_name}}" style="color: #263238;">
 			    </div>
-				<div class="col s3 m12">
-					<i class="material-icons prefix">access_time</i><label for="icon_prefix">Course Duration</label>
+				<div class="col s12 m3">
+					<i class="material-icons prefix">access_time</i><label for="icon_prefix"> Course Duration</label>
 					<input disabled id="course_duration" name="course_duration" type="text" class="validate" value="{{course.duration}}" style="color: #263238;">
 			    </div>
-				<div class="col s3 m12">
+				<div class="col s12 m3">
 					<i class="material-icons prefix">date_range</i><label for="icon_prefix">Course Start Date</label>
 					<input disabled id="course_date" name="course_date" type="text" class="validate" value="{{course.date}}" style="color: #263238;">
 			    </div>
 				<div class="row">
 					<div class="col s12">
-						<i class="material-icons prefix">subject</i><label for="icon_telephone">Course Description</label>
+						<i class="material-icons prefix">subject</i><label for="icon_telephone"> Course Description</label>
 						<textarea disabled name="course_description" id="course_description" class="materialize-textarea" style="color: #263238;">{{ course.course_description }}</textarea>
 
 					</div>
 				</div>
                 <div class="row">
 				    <h3>Session Subscription</h3>
-                    <div class="col s3">
-					    <i class="material-icons prefix">date_range</i><label for="icon_prefix">Total Spaces On course</label>
+                    <div class="col s12 m3">
+					    <i class="material-icons prefix">date_range</i><label for="icon_prefix">Maximum Subscribers</label>
 					    <input disabled id="" name="max_subscriber" type="text" class="validate" value="{{course.max_subscriber}}" style="color: #263238;">
 			        </div>
-                    <div class="col s9">
+                    <div class="col s12 m9">
                         <h4>Course Uptake</h4>
 				        <!-- This section is to ilustrate to the user the uptake of the class current subscribers V Max-subscribers-->		
                         <div class="w3-light-grey w3-round">
