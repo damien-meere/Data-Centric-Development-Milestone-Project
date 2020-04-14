@@ -89,9 +89,14 @@ This project utilises the following technologies:
 
 
 ## Site-Notes
-
+As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and trainee interfaces are accessible from the navbar. There is no site authentication in this project, so for 
+demonstrative purposes, visitors can quickly move back and forth between the interfaces. 
 
 ## Current-Features
+
+Provide Page breakdowns here
+
+
 
 ## Future-Features
 Authentication, Authorisation and Accounting: In the next iteration of this project (see [Internal Deployment](#Internal-Deployment)) user Authentication will be required, utilising internal BT infrastructure.
@@ -99,6 +104,9 @@ Authentication, Authorisation and Accounting: In the next iteration of this proj
 A [Training Dashboard](https://damien-meere.github.io/interactive_frontend_milestone/) was developed in a previous milestone project. The next step in the evolution of this tool will be to interconnect the two tools, and utilise the dashboard to interogate the dateset generate through the continued use of this tool by both Trainers and Trainees within BT. 
 
 Another useful feature will be to faciliate ongoing easy to understand feedback for both the Trainers and Trainees. Each course will be able to determine the popularity/success of a progamme by enable using to gia ve course an Upvote or a Downvote.This feedback will enable trainees to quickly ascertain how other trainees have felt about a programme before proceeding to enroll.
+
+Finally, on successful enrollment in a programme, a useful feature will be to automatically email the trainee with the requisite joining instructions whether the course is online 
+(link to requisite platform) or classroom-based (location and access requirments).
 
 ## Testing
 
