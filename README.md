@@ -66,20 +66,13 @@ available, the feedback is presented to notifiy the trainee.
 
 From these user stories, it was clear that quick and easy access to information would be key to ensuring that users could make the most efficient use of the Trainer and Trainee 
 interfaces. I needed to make sure that users could quickly navigate the site, and locate any course information they required with minimal prompting. As illustrated by the images 
-in the [Wireframes folder](wireframes),
+in the [Wireframes folder](wireframes), even from the early designs, I wanted to ensure thesite was easy-to-navigate and use. As youc an see from the completed 
+[project site](https://dm-milestone-3-code-institute.herokuapp.com/), the final version has not strayed far from the originally intended designs.
 
+One alteration is that both trainer and trainee interfaces are easily acessible from the navbar. There is no site authentication in this project, so for demonstrative purposes, 
+visitors can quickly move back and forth between the interfaces. In order to ensure continued usability, regardless of accessing device, responsive design has been incorporated to
+the project. 
 
-
-
-
-Both trainer and trainee interfaces are easily acessible from the navbar. There is no site authentication in this project, so for demonstrative purposes, visitors can 
-quickly move back and forth.
-
-
-
-
-
-discuss responiveness functionality
 
 ## Technologies
 This project utilises the following technologies:
