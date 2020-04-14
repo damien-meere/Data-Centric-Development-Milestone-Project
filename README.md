@@ -35,6 +35,14 @@ A live demo of the project can be found deployed to Heroku [Here](https://dm-mil
 ## Database
 ![Database Structure](documentation/database_v2.jpg)
 
+The database itself is stored on [MongoDB](https://www.mongodb.com/). the structure consists for 4 collections. The category, course_duration and course_size collections are utilised
+to faciliate more a strucutred approach to course creation. On the course creation pag, these three collections faciliate dropdown menus on the page. The elements of each of these
+collections can be created, viewed, edited and deleted from the 'Manage Course Utilities' menu in the site navbar.
+
+The course collection houses the main objects of the site. information relating to all aspects of the course are stored here. This collection is queried to populate the 'accordian'
+elements on the main page of the trainer and trainee sections. The percentage value houses an updated string value identifying the current uptake level on the course. As trainees enroll
+in courses, this value is updated. The Subscriber_list contains a nested collection of key/value pairs identifying the name and email of all trainees that have requested access 
+to a course.
 
 
 ## UX+User-Stories
