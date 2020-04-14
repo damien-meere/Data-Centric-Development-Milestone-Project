@@ -4,14 +4,13 @@
 This project website will highlight my capability to employ the various tools illustrated throughout the Practical Python and Data-Centric Development section of the Code Institute 
 programme. 
 
-This project will present a Training course booking site, that will enable trainees to view what courses are currently planned, and what courses have been complete. In 
-relation to the courses that are planned, the trainee will be able to view the uptake level and make a booking. For courses that have been complete, the trainee can provide feedback 
-for future trainees to identify the most popular courses.
+This project will present a training course booking site, which facilitates the trainer in Creating, Viewing, Editing and Deleting training courses. On creation of a new course,
+the trainer specifies the maximum number of subscribers a course can take. In defining this value, only that number of trainees will be permitted to enroll on the course. All elements
+of the courses are editable except for the maximum subscriber value. On the trainer view, the trainer can quickly view what the uptake levels are for each course with a progress bar.
+The site also enables trainees to view course informaiton, and view the uptake level. And once they have chosen a course, upon submission of their name and email, they will be given 
+feedback as to whether their request has been successful of if there are no remaining spaces on a course.
 
-The site will also facilitate the trainer in Creating, Viewing, Editing and Deleting new courses, viewing feedback from previous courses, and viewing a dashboard to see some pertinant
-statistics about the training programmes.
-
-No User Authentication will be incorporated into this project, as this is considers beyond the scope of this section of the course. Rather there will be an anonymous Trainer and trainee
+No User Authentication was incorporated into this project, as this is considered beyond the scope of this section of the course. Rather there will be an anonymous Trainer and trainee
 area within the site.
 
 ## Table of Contents
@@ -39,22 +38,27 @@ A live demo of the project can be found deployed to Heroku [Here](https://dm-mil
 
 
 ## UX+User-Stories
+![Responsive Views of Home Page](documentation/responsive_view.jpg)
+
+###Users
+
+###User Stories
 
 
 discuss responiveness functionality
 
 ## Technologies
 This project utilises the following technologies:
-1. [HTML]((https://developer.mozilla.org/en-US/docs/Web/HTML))
+1. [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 2. [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 3. [Javascript](https://www.w3schools.com/jsref/)
-4. [Python]()
+4. [Python](https://www.python.org/)
 5. [MongoDB](https://www.mongodb.com/)
 6. [Materialize](http://archives.materializecss.com/0.100.2/) (0.100.2)
 7. [FontAwesome](https://fontawesome.com/)
 8. [JQuery](https://jquery.com)
 9. [Git](https://git-scm.com/)
-10. [Flask]()
+10. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
 
 ## Site-Notes
