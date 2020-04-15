@@ -90,9 +90,17 @@ As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and traine
 demonstrative purposes, visitors can quickly move back and forth between the interfaces. 
 
 ## Current-Features
+**Home Page - Trainer**
+![Home Page Closed](documentation/home_page_closed.jpg)
 
-Provide Page breakdowns here
+![Home Page Open](documentation/home_page_open.jpg)
 
+*** Manage Utilities Menu ***
+![Utilities](documentation/utilities_menu.jpg)
+
+
+**Home Page - Trainee**
+![Trainee Home Page](documentation/trainee_home_page_open.jpg)
 
 ## Future-Features
 Authentication, Authorisation and Accounting: In the next iteration of this project (see [Internal Deployment](#Internal-Deployment)) user Authentication will be required, utilising internal BT infrastructure.
