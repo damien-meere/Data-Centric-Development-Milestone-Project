@@ -51,7 +51,7 @@ to a course.
 My goal in building this site was to make it easier to observe and manage information related to training activites within BT Ireland through a simple, easily navigated interface. 
 In this process there are two types of actors - Trainers & Trainees. Therefore, in designing this site, I started with the following user stories:
 
-***Trainer Building and diseminating information related to training programmes
+***Trainer Building and diseminating information related to training programmes***
 > I wanted easy trainers to be able to create, access, edit and delete information on available training options through a minimalist, sleek, easy-to-navigate site. I wanted the 
 trainer to be able to create a course, but to still be directed in some aspects of the course creation. Therefore, a number of fields of the course creation and course editing pages
 are populated dropdown menus (Category, Duration & Size), where the contents of the dropdown come from the requisite collections in the [database](#Database). Of course these elements
@@ -59,7 +59,7 @@ are not static, and as such, each collection can be all be managed (created, vie
 quickly ascertain the uptake on each course to view the amount of enrollments for each course, so I chose to represent this as a progress bar that gives a quick visual breakdown 
 of the enrollments. 
 
-***Trainee Looking to access course information and enroll in their chosen programme
+***Trainee Looking to access course information and enroll in their chosen programme***
 > I wanted to faciliate a view of the information for trainees where they could get all the information they might require about a particular course and enroll in their chosen 
 courses. On submission of an enrollment, should there be sufficient space to accomodate the trainee, they are presented with feedback to confirm their space. If ther is not space 
 available, the feedback is presented to notifiy the trainee.
