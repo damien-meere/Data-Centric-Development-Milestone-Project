@@ -84,10 +84,11 @@ This project utilises the following technologies:
 8. [JQuery](https://jquery.com)
 9. [Git](https://git-scm.com/)
 10. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+11. [Heroku](https://www.heroku.com/)
 
 ## Site-Notes
 As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and trainee interfaces are accessible from the navbar. There is no site authentication in this project, so for 
-demonstrative purposes, visitors can quickly move back and forth between the interfaces. 
+demonstrative purposes, visitors can quickly move back and forth between the two interfaces. 
 
 ## Current-Features
 ***Home Page - Trainer Interface***
@@ -151,20 +152,21 @@ via the navbar.
 ![Trainee Home Page](documentation/trainee_home_page_open.jpg)
 
 ***Trainee Course Enrollment***
-Once the trainee has chose a particular course, they select the Enrollment button on the course element within the collapsible accordian menu. This brings them to an enrollment page
-as shown below, where the trainee can input their name and email. Should
+Once the trainee has chosen a particular course, they select the Enrollment button on the course element within the collapsible accordian menu. This brings them to an enrollment page
+as shown below, where the trainee can input their name and email. Should there be space to accomodate them on the cousre, their details are presented to the trainer on the 'View Enrollments'
+Trainer interface.
 
 >Trainee Interface - Course Enrollment
 ![Trainee Course Enrollment](documentation/trainee_enrollment.jpg)
 
-
 ***Trainee Course Enrollment Success***
+On successful enrollment in a course (if there's still spaces), the trainee is presented with the following feedback on seuccessful enrollment.
 
 >Trainee Interface - Enrollment Success
 ![Trainee Course Enrollment](documentation/trainee_enrollment_success.jpg)
 
-
 ***Trainee Course Enrollment Failure***
+If the trainee attempts to enroll in a course that has already reached maximum occupancy, they will be presente with the following feedback to let me know.
 
 >Trainee Interface - Enrollment Failure
 ![Trainee Course Enrollment](documentation/trainee_enrollment_fail.jpg)
@@ -183,13 +185,16 @@ Finally, on successful enrollment in a programme, a useful feature will be to au
 (link to requisite platform) or classroom-based (location and access requirments).
 
 ## Testing
+Validation against the User stories highlighted in previous sections was key. This site needed to ensure that the needs of both trainers and trainees were met.
 
-Form verifiction testing - with valid data,  without any data, with partial data - Compulsory fields
 
-Validation of User stories
 
-Responsive Design
 
+
+During early development, forms (course creation, category/duration/size creation) were implemented without proper validation, meaning empty records could succeffully be submitted to
+the backend database. This left an empty record with an ID in the collection. Therefore all fields, now already controlled with a dropdown menu, have Compulsory designation and validation
+of the data to ensure the inputs are accounted for and are in the correct format. This input validation is vital to ensuring that all data stored in the MongoDB collections are as 
+valid as possible.
 
 All CSS, HTML and Javascript files were passed through code validators. The [CSS Validator](https://jigsaw.w3.org/css-validator/) & [HTML Validator](https://validator.w3.org)
 checked the markup validity of Web documents against the w3c standards. the [JSHint](https://jshint.com/) utility was used to check for errors and potential problems in the
@@ -197,14 +202,13 @@ JavaScript code.
 
 All links on each page were individually tested to ensure they navigated to the requisite page.
 
-This site was tested across multiple browsers (Chrome, Safari, Firefox), and on multiple devices (Samsung Galaxy S8/S9/S10, Samsung Galaxy Tab, Apple iPad, iPhone 6/7/8)
-to ensure compatibility and responsiveness. As detailed in the next section, the display of charts is somewhat unresponsive on smaller screens, and the current iteration
-is suited to desktop presentation.
+This site was tested across multiple browsers (Chrome, Safari, Firefox), and on multiple devices (Samsung Galaxy S9/S10, Samsung Galaxy Tab, Apple iPad, iPhone 6/7/8)
+to ensure compatibility and responsiveness. As detailed in previous sections, depending on the screen size, elements will move and change size to ensure usability in unaffected by 
+the changes.
 
 ## Testing-Unresolved_Bugs
 On the course creation page, all the fields are set as required forcing the user to complete all fields before the form can be submitted. Unfortunately, Because each input is readOnly 
 by default, HTML5 attributes, such as required, do not get enforced. Therefore the user can submit the course creation form without specifying the date.
-
 
 ## Deployment
 A live iteration of this project can be found deployed to [Heroku](https://dm-milestone-3-code-institute.herokuapp.com/)
@@ -216,6 +220,17 @@ You can also Clone this Repository to GitHub Desktop, by navigating to the [main
 repository on GitHub, under the repository name, click Clone or download. Click Open in Desktop to clone the repository and open it in GitHub Desktop. Click Choose... and, 
 using Windows Explorer, navigate to a local path where you want to clone the repository. For more information you can 
 review the [GitHub site](https://help.github.com/en/articles/cloning-a-repository#cloning-a-repository-to-github-desktop).
+
+To deploy the project to Heroku you will need to do the following:
+1.  Create a new app on [Heroku](https://www.heroku.com/)
+2.  Linked the app to its Github repository shown above
+3.  Verify that the project has an up to date Procfile and requirements.txt
+4.  Ensure you have Heroku set up as a remote repo (`git remote -v`)
+5.  Push the project to the Heroku remote (`git push heroku master`)
+6.  Set the environmental variables/confirg vars on heroku to- IP: 0.0.0.0, PORT: 5000 
+7.  Set the MONGO_URI environmental variable in the Heroku config vars 
+8.  Restart all dynos.
+9.  Open the app on Heroku and check to ensure that it's working correctly.
 
 ## Internal-Deployment
 Use within BT - This is a test portal which I aim to use to faciliate booking to courses and training sessions within BT. This protal will be deployed internally within the 
