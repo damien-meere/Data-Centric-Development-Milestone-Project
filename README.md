@@ -90,12 +90,17 @@ As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and traine
 demonstrative purposes, visitors can quickly move back and forth between the interfaces. 
 
 ## Current-Features
-**Home Page - Trainer**
+***Home Page - Trainer***
+The main landing page for the trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. When the user, clicks
+on a particular course, the collapsible element opens out to present a more details view of the programme, highlihgting the variousdetails of that particular iteration, as well as
+current uptake in the course (shown in progress bar.)
 ![Home Page Closed](documentation/home_page_closed.jpg)
-
 ![Home Page Open](documentation/home_page_open.jpg)
 
-*** Manage Utilities Menu ***
+***Course Creation Page***
+![Course Creation](documentation/course_create.jpg)
+
+***Manage Utilities Menu***
 ![Utilities](documentation/utilities_menu.jpg)
 
 
