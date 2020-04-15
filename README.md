@@ -129,7 +129,7 @@ is suited to desktop presentation.
 
 ## Testing-Unresolved_Bugs
 
-On the course creation page, all the fields are set as required forcing the user to complete all fields befor ethe form can be submitted. Unfortunately, Because each input is readOnly 
+On the course creation page, all the fields are set as required forcing the user to complete all fields before the form can be submitted. Unfortunately, Because each input is readOnly 
 by default, HTML5 attributes, such as required, do not get enforced. Therefore the user can submit the course creation form without specifying the date.
 
 
