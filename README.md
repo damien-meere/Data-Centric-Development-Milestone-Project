@@ -91,10 +91,12 @@ demonstrative purposes, visitors can quickly move back and forth between the int
 
 ## Current-Features
 ***Home Page - Trainer Interface***
-The main landing page for the trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. When the user, clicks
-on a particular course, the collapsible element opens out to present a more details view of the programme, highlihgting the various details of that particular iteration, as well as
-current uptake in the course (shown in progress bar). The icons show to the left of the course title are dependant on the course category chosen (Technical, Soft-Skills, Professional).
-A number of buttons also provide prompts for the trainer to manage the courses, allowing for the editing and deleting of a particular course.
+As discussed in the user stories, within the trainer interface, the trainer needs to quickly ascertain information about presented training. Therefore the main landing page for the 
+trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. When the user, clicks on a particular course, the 
+collapsible element opens out to present a more details view of the programme, highlighting the various details of that particular iteration, as well as current uptake in the course 
+(shown in progress bar). The icons show to the left of the course title are dependant on the course category chosen (Technical, Soft-Skills, Professional).
+A number of buttons also provide prompts for the trainer to manage the courses, allowing for the editing and deleting of a particular course, fulfilling the main requirements for the
+trainer highlighted in the user stories.
 
 >Trainer Interface - Closed Menu
 ![Home Page Closed](documentation/home_page_closed.jpg)
@@ -113,6 +115,12 @@ The course edit page takes the same form as the course creation page, with the f
 >Course Creation page
 ![Course Creation](documentation/course_create.jpg)
 
+
+***Show Course Enrollments***
+
+>Show Course Enrollments
+![Enrollments](documentation/trainer_show_enrollments.jpg)
+
 ***Manage Utilities Menu***
 The various dropdown menus in the course creation and course edit pages are populated from various utilities that can be altered from the 'Manage Course Utilities' menu in the navbar, 
 as shown below. Here, the Category, Duration & Course Size values can be created, edited, & deleted, with any changes reflected in the dropdown menus elsewhere on the site. The reasoning
@@ -129,18 +137,33 @@ Maximum Course size take the same form as this.
 ![Utilities](documentation/manage_categories.jpg)
 
 ***Home Page - Trainee***
+Within the trainee interface, as called out in the user stories, the trainee needs to be able to quickly scan through the list of available courses and gather as much information
+as they require to decide on a particular course. Therefore, mirroring the Trainer interface, a collapsible accordian element presents all the courses to the trainee. When they click
+on a particular course, they are presented with the breakdown shown below. Within the interface, the trainee can navigate to the enrollment page for their particular chosen course.
+
+The trainee interface is distinguished from the trainer interface by the colour scheme of the navbar and the available options in the navbar. Users can navigate between both interfaces
+via the navbar.
 
 >Trainee Interface - Open Menu
 ![Trainee Home Page](documentation/trainee_home_page_open.jpg)
 
-
 ***Trainee Course Enrollment***
+Once the trainee has chose a particular course, they select the Enrollment button on the course element within the collapsible accordian menu. This brings them to an enrollment page
+as shown below, where the trainee can input their name and email. Should
+
+>Trainee Interface - Course Enrollment
 ![Trainee Course Enrollment](documentation/trainee_enrollment.jpg)
 
+
 ***Trainee Course Enrollment Success***
+
+>Trainee Interface - Enrollment Success
 ![Trainee Course Enrollment](documentation/trainee_enrollment_success.jpg)
 
+
 ***Trainee Course Enrollment Failure***
+
+>Trainee Interface - Enrollment Failure
 ![Trainee Course Enrollment](documentation/trainee_enrollment_fail.jpg)
 
 ## Future-Features
