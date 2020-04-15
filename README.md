@@ -91,21 +91,51 @@ demonstrative purposes, visitors can quickly move back and forth between the int
 
 ## Current-Features
 ***Home Page - Trainer***
+
 The main landing page for the trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. When the user, clicks
-on a particular course, the collapsible element opens out to present a more details view of the programme, highlihgting the variousdetails of that particular iteration, as well as
-current uptake in the course (shown in progress bar.)
+on a particular course, the collapsible element opens out to present a more details view of the programme, highlihgting the various details of that particular iteration, as well as
+current uptake in the course (shown in progress bar). The icons show to the left of the course title are dependant on the course category chosen (Technical, Soft-Skills, Professional).
+A number of buttons also provide prompts for the trainer to manage the courses, allowing for the editing and deleting of a particular course.
+
 ![Home Page Closed](documentation/home_page_closed.jpg)
 ![Home Page Open](documentation/home_page_open.jpg)
 
 ***Course Creation Page***
+From the navbar, the trainer can navigate to the 'Course Creation' page. Here the trainer can create a new course object that will  be presented in both the trainer and trainee
+interfaces. The trainer can set the course title, identify the course category (which sets the course icon ont he home page), set the start date, duration, maximum occupancy and 
+provide a description. When the trainer sets the maximum occupancy for the course, this value sets the maximum number of trainees that can enroll from the trainee interface. This 
+value cannot be edited from the course edit page. The reason for this is to ensiure that a trainer does not reduce the max occupancy after a number of trainees have enrolled, and cause
+discrepancies with the database.
+
+The course edit page takes the same form as the course creation page, with the field filled in for the selected course.
+
 ![Course Creation](documentation/course_create.jpg)
 
 ***Manage Utilities Menu***
+The various dropdown menus in the course creation and course edit pages are populated from various utilities that can be altered from the 'Manage Course Utilities' menu in the navbar, 
+as shown below. Here, the Category, Duration & Course Size values can be created, edited, & deleted, with any changes reflected in the dropdown menus elsewhere on the site. The reasoning
+for utilising dropdown menus was to, as much as possible, direct and standardise the course records.
+
 ![Utilities](documentation/utilities_menu.jpg)
 
+***Manage Categories***
+Each of the utility areas appears in teh saem form as shown below. Trainers can Add, Edit or Delete the values that will appear in the category dropdown menus. The Course duration and 
+Maximum Course size take the same form as this.
+![Utilities](documentation/manage_categories.jpg)
 
-**Home Page - Trainee**
+
+***Home Page - Trainee***
 ![Trainee Home Page](documentation/trainee_home_page_open.jpg)
+
+
+***Trainee Course Enrollment***
+![Trainee Course Enrollment](documentation/trainee_enrollment.jpg)
+
+***Trainee Course Enrollment Success***
+![Trainee Course Enrollment](documentation/trainee_enrollment_success.jpg)
+
+***Trainee Course Enrollment Failure***
+![Trainee Course Enrollment](documentation/trainee_enrollment_fail.jpg)
 
 ## Future-Features
 Authentication, Authorisation and Accounting: In the next iteration of this project (see [Internal Deployment](#Internal-Deployment)) user Authentication will be required, utilising internal BT infrastructure.
