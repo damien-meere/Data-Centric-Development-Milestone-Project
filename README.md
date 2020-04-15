@@ -44,7 +44,6 @@ elements on the main page of the trainer and trainee sections. The percentage va
 in courses, this value is updated. The Subscriber_list contains a nested collection of key/value pairs identifying the name and email of all trainees that have requested access 
 to a course.
 
-
 ## UX+User-Stories
 ![Responsive Views of Home Page](documentation/responsive_view.jpg)
 
@@ -73,7 +72,6 @@ One alteration is that both trainer and trainee interfaces are easily acessible 
 visitors can quickly move back and forth between the interfaces. In order to ensure continued usability, regardless of accessing device, responsive design has been incorporated to
 the project. 
 
-
 ## Technologies
 This project utilises the following technologies:
 1. [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -87,7 +85,6 @@ This project utilises the following technologies:
 9. [Git](https://git-scm.com/)
 10. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
-
 ## Site-Notes
 As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and trainee interfaces are accessible from the navbar. There is no site authentication in this project, so for 
 demonstrative purposes, visitors can quickly move back and forth between the interfaces. 
@@ -95,7 +92,6 @@ demonstrative purposes, visitors can quickly move back and forth between the int
 ## Current-Features
 
 Provide Page breakdowns here
-
 
 
 ## Future-Features
@@ -128,7 +124,6 @@ to ensure compatibility and responsiveness. As detailed in the next section, the
 is suited to desktop presentation.
 
 ## Testing-Unresolved_Bugs
-
 On the course creation page, all the fields are set as required forcing the user to complete all fields before the form can be submitted. Unfortunately, Because each input is readOnly 
 by default, HTML5 attributes, such as required, do not get enforced. Therefore the user can submit the course creation form without specifying the date.
 
