@@ -117,6 +117,9 @@ The course edit page takes the same form as the course creation page, with the f
 
 
 ***Show Course Enrollments***
+From the main trainer interface, the trainer can view the courses, and in particular view the current enrollments for a particular course. When they choose to view the enrollments,
+they are presented with the Enrollment interface as shown below. Here they can view the Name and Email address of all trainees that have enrolled for a course. The maximum number of
+trainees that will be accepted onto the course is dictated by the max_subscribers value, as defined on the Course Creation page, as shown previously.
 
 >Show Course Enrollments
 ![Enrollments](documentation/trainer_show_enrollments.jpg)
@@ -172,6 +175,9 @@ Authentication, Authorisation and Accounting: In the next iteration of this proj
 A [Training Dashboard](https://damien-meere.github.io/interactive_frontend_milestone/) was developed in a previous milestone project. The next step in the evolution of this tool will be to interconnect the two tools, and utilise the dashboard to interogate the dateset generate through the continued use of this tool by both Trainers and Trainees within BT. 
 
 Another useful feature will be to faciliate ongoing easy to understand feedback for both the Trainers and Trainees. Each course will be able to determine the popularity/success of a progamme by enable using to gia ve course an Upvote or a Downvote.This feedback will enable trainees to quickly ascertain how other trainees have felt about a programme before proceeding to enroll.
+
+Another useful feature to develop is the capability to edit and delete users from particular courses where necessary. At the moment, users are just accepted in and the trainer has no
+capability to alter the list. However, in the fully deployed version of this project, the trainer will be able to manage the subscriber list.
 
 Finally, on successful enrollment in a programme, a useful feature will be to automatically email the trainee with the requisite joining instructions whether the course is online 
 (link to requisite platform) or classroom-based (location and access requirments).
