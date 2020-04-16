@@ -23,7 +23,7 @@ area within the site.
 - [Current Features](#Current-Features)
 - [Future Features](#Future-Features)
 - [Testing](#Testing)
-- [Testing -  Unresolved Bugs](#Testing-Unresolved_Bugs)
+- [Testing - Unresolved Bugs](#Testing-Unresolved_Bugs)
 - [Deployment](#Deployment)
 - [Internal Deployment](#Internal-Deployment)
 
@@ -186,35 +186,37 @@ Finally, on successful enrollment in a programme, a useful feature will be to au
 Validation against the User stories highlighted in previous sections was key. This site needed to ensure that the needs of both trainers and trainees were met, and that all functionality
 throughout the site facilitating these needs worked effectively. Therefore the following tests were conducted to ensure that the originally stated users stories were catered to:
 
-- Trainer Interface - Home Page
+### Trainer Interface - Home Page
 1. Verify that all requisite course are displayed on the Trainer Interface, and that all fields are complete.
 2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
 3. Verify that icons within the course components change to meet the designated course and chosen course category.
-`These items are common across all pages but are still checked, even though all pages are based on the same base template`
+```
+These items are common across all pages but are still checked, even though all pages are based on the same base template
+```
 4. Verify that all buttons the course components lead to the requisite page, and where course-specific, include the requisite course details.
 5. Verify that all buttons in the navbar lead to the requisite sections of the site, and that at all times, the trainer knows exactly where there are.
 
-- Trainer Interface - Enrollments Page
+### Trainer Interface - Enrollments Page
 1. Verify that details for all enrolled trainee are presented within the interface for the trainer.
 2. Verify that the correct course information is also presented above the enrollment list.
 
-- Trainer Interface - Create Course
+### Trainer Interface - Create Course
 1. Verify that all requisite dropdown menus are updated to reflect the components (Category, Duration, Size) as specified within the Utility Management sections.
 2. Try to submit the form as empty to verify that the trainer is forced to provide all required information.
 3. Try to submit the form with only a subset of fields filled in, to ensure the trainer is given the requisite on-screen prompts to complete all required fields.
 4. Verify that the course is created and shown within the collapsible accordian element on the Home page.
 
-- Trainer Interface: Manage Utilities - Category, Duration, Size Management
+### Trainer Interface: Manage Utilities - Category, Duration, Size Management
 1. Verify that all created values are reflected in the requisite dropdown menus throughout the site.
 2. Verify that that values can be created, edited and deleted via the buttons associated with each value.
 
--Trainee Interface - Home Page
+### Trainee Interface - Home Page
 1. Verify that all requisite course are displayed on the Trainee Interface, and that all fields are complete (And Match the details presented on the trainer interface)
 2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
 3. Verify that icons within the course components change to meet the designated course and chosen course category.
 4. Verify that the Enroll Button leads to the requisite course enrollment page.
 
--Trainee Interface - Enrollment Page
+### Trainee Interface - Enrollment Page
 1. Verify that the correct course information is also presented above the enrollment list.
 2. Verify that on enrollment, the trainee is given the correct feedback on whether their enrollment was a success or not (should teh course be full) - i.e. present the successful enrollment page or 
 Unsuccessful enrollment as required.
