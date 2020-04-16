@@ -190,10 +190,7 @@ throughout the site facilitating these needs worked effectively. Therefore the f
 1. Verify that all requisite course are displayed on the Trainer Interface, and that all fields are complete.
 2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
 3. Verify that icons within the course components change to meet the designated course and chosen course category.
-```
-These items are common across all pages but are still checked, even though all pages are based on the same base template
-```
-4. Verify that all buttons the course components lead to the requisite page, and where course-specific, include the requisite course details.
+4. Verify that all buttons within the course components lead to the requisite page, and where course-specific, include the requisite course details.
 5. Verify that all buttons in the navbar lead to the requisite sections of the site, and that at all times, the trainer knows exactly where there are.
 
 ### Trainer Interface - Enrollments Page
