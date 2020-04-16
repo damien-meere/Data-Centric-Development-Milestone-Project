@@ -26,8 +26,6 @@ area within the site.
 - [Testing -  Unresolved Bugs](#Testing-Unresolved_Bugs)
 - [Deployment](#Deployment)
 - [Internal Deployment](#Internal-Deployment)
-- [Acknowledgements](#Acknowledgements)
-- [Content](#Content)
 
 ## Demo
 A live demo of the project can be found deployed to Heroku [Here](https://dm-milestone-3-code-institute.herokuapp.com/)
@@ -185,11 +183,42 @@ Finally, on successful enrollment in a programme, a useful feature will be to au
 (link to requisite platform) or classroom-based (location and access requirments).
 
 ## Testing
-Validation against the User stories highlighted in previous sections was key. This site needed to ensure that the needs of both trainers and trainees were met.
+Validation against the User stories highlighted in previous sections was key. This site needed to ensure that the needs of both trainers and trainees were met, and that all functionality
+throughout the site facilitating these needs worked effectively. Therefore the following tests were conducted to ensure that the originally stated users stories were catered to:
 
+- Trainer Interface - Home Page
+1. Verify that all requisite course are displayed on the Trainer Interface, and that all fields are complete.
+2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
+3. Verify that icons within the course components change to meet the designated course and chosen course category.
+`These items are common across all pages but are still checked, even though all pages are based on the same base template`
+4. Verify that all buttons the course components lead to the requisite page, and where course-specific, include the requisite course details.
+5. Verify that all buttons in the navbar lead to the requisite sections of the site, and that at all times, the trainer knows exactly where there are.
 
+- Trainer Interface - Enrollments Page
+1. Verify that details for all enrolled trainee are presented within the interface for the trainer.
+2. Verify that the correct course information is also presented above the enrollment list.
 
+- Trainer Interface - Create Course
+1. Verify that all requisite dropdown menus are updated to reflect the components (Category, Duration, Size) as specified within the Utility Management sections.
+2. Try to submit the form as empty to verify that the trainer is forced to provide all required information.
+3. Try to submit the form with only a subset of fields filled in, to ensure the trainer is given the requisite on-screen prompts to complete all required fields.
+4. Verify that the course is created and shown within the collapsible accordian element on the Home page.
 
+- Trainer Interface: Manage Utilities - Category, Duration, Size Management
+1. Verify that all created values are reflected in the requisite dropdown menus throughout the site.
+2. Verify that that values can be created, edited and deleted via the buttons associated with each value.
+
+-Trainee Interface - Home Page
+1. Verify that all requisite course are displayed on the Trainee Interface, and that all fields are complete (And Match the details presented on the trainer interface)
+2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
+3. Verify that icons within the course components change to meet the designated course and chosen course category.
+4. Verify that the Enroll Button leads to the requisite course enrollment page.
+
+-Trainee Interface - Enrollment Page
+1. Verify that the correct course information is also presented above the enrollment list.
+2. Verify that on enrollment, the trainee is given the correct feedback on whether their enrollment was a success or not (should teh course be full) - i.e. present the successful enrollment page or 
+Unsuccessful enrollment as required.
+3. Ensure that the details provided by the trainee are successfully presented to the trainer through the 'View Enrollments' button on the trainer interface.
 
 During early development, forms (course creation, category/duration/size creation) were implemented without proper validation, meaning empty records could succeffully be submitted to
 the backend database. This left an empty record with an ID in the collection. Therefore all fields, now already controlled with a dropdown menu, have Compulsory designation and validation
@@ -199,8 +228,6 @@ valid as possible.
 All CSS, HTML and Javascript files were passed through code validators. The [CSS Validator](https://jigsaw.w3.org/css-validator/) & [HTML Validator](https://validator.w3.org)
 checked the markup validity of Web documents against the w3c standards. the [JSHint](https://jshint.com/) utility was used to check for errors and potential problems in the
 JavaScript code.
-
-All links on each page were individually tested to ensure they navigated to the requisite page.
 
 This site was tested across multiple browsers (Chrome, Safari, Firefox), and on multiple devices (Samsung Galaxy S9/S10, Samsung Galaxy Tab, Apple iPad, iPhone 6/7/8)
 to ensure compatibility and responsiveness. As detailed in previous sections, depending on the screen size, elements will move and change size to ensure usability in unaffected by 
@@ -237,12 +264,3 @@ Use within BT - This is a test portal which I aim to use to faciliate booking to
 company's Intranet, with the code being housed within internal infrastructure. Using this portal, training managers will be able to circulate information relating to upcoming 
 courses, and faciliate more effective and efficient administration of these training programmes. As detailed in the [Future Features](#Future-Features) section, the next iteration 
 will require integration within internal BT AAA infrastructure to ensure adequate security.
-
-### Acknowledgements
-
-
-
-### Content
-All data contained within this site is mocked up.
-
-**This site is for educational purposes**
