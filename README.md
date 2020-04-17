@@ -136,7 +136,7 @@ for utilising dropdown menus was to, as much as possible, direct and standardise
 ![Utilities](documentation/utilities_menu.jpg)
 
 ***Manage Categories***
-Each of the utility areas appears in teh saem form as shown below. Trainers can Add, Edit or Delete the values that will appear in the category dropdown menus. The Course duration and 
+Each of the utility areas appears in the saem form as shown below. Trainers can Add, Edit or Delete the values that will appear in the category dropdown menus. The Course duration and 
 Maximum Course size take the same form as this.
 
 >Manage Categories Page
@@ -220,7 +220,7 @@ throughout the site facilitating these needs worked effectively. Therefore the f
 
 ### Trainee Interface - Enrollment Page
 1. Verify that the correct course information is also presented above the enrollment list.
-2. Verify that on enrollment, the trainee is given the correct feedback on whether their enrollment was a success or not (should teh course be full) - i.e. present the successful enrollment page or 
+2. Verify that on enrollment, the trainee is given the correct feedback on whether their enrollment was a success or not (should the course be full) - i.e. present the successful enrollment page or 
 Unsuccessful enrollment as required.
 3. Ensure that the details provided by the trainee are successfully presented to the trainer through the 'View Enrollments' button on the trainer interface.
 
