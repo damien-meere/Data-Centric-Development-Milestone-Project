@@ -13,15 +13,14 @@ mongo = PyMongo(app)
 
 # Course Related CRUD Functionality
 
-
-# call to trainee courses page and supply list of all courses  sorted by date
-@app.route('/')
+# call to courses page and supply list of all courses sorted by date
 @app.route('/get_courses')
 def get_courses():
     return render_template("courses.html", courses=mongo.db.courses.find().sort("date", 1))
-    
 
-# Course that will run after today
+
+# Upcoming Courses
+# Call to courses page and supply list of all courses that will run after today, sorted by date
 @app.route('/')
 @app.route('/get_courses_gte')
 def get_courses_gte():
@@ -32,8 +31,8 @@ def get_courses_gte():
     return render_template("courses.html", courses=mongo.db.courses.find({"date":{'$gte': today_string}}).sort("date", 1))
 
 
-# Courses that have run before today
-@app.route('/')
+# Complete Courses
+# Call to courses page and supply list of all courses that ran before today, sorted by date
 @app.route('/get_courses_lt')
 def get_courses_lt():
     # get todays date
