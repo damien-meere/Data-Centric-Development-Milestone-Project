@@ -78,7 +78,7 @@ def insert_course():
     course_insertion.update({'subscriber_list': []})
     course_insertion.update({'percentage': "0%"})
     courses.insert_one(course_insertion)
-    return redirect(url_for('get_courses'))
+    return redirect(url_for('get_courses_gte'))
 
 
 # call to editcourse page with requisite data from
@@ -115,7 +115,7 @@ def edit_course(course_id):
                             'course_description': request.form.get('course_description'),
                             'max_subscriber': request.form.get('max_subscriber')
                         }})
-    return redirect(url_for('get_courses'))
+    return redirect(url_for('get_courses_gte'))
 
 
 # delete specified course from database
@@ -123,7 +123,7 @@ def edit_course(course_id):
 def delete_course(course_id):
     # gather specified course ID and call remove function
     mongo.db.courses.remove({'_id': ObjectId(course_id)})
-    return redirect(url_for('get_courses'))
+    return redirect(url_for('get_courses_gte'))
 
 
 ## Enrollment-specific functions

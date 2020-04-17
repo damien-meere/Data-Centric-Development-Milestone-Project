@@ -49,11 +49,12 @@ My goal in building this site was to make it easier to observe and manage inform
 In this process there are two types of actors - Trainers & Trainees. Therefore, in designing this site, I started with the following user stories:
 
 ***Trainer Building and diseminating information related to training programmes***
-> I wanted easy trainers to be able to create, access, edit and delete information on available training options through a minimalist, sleek, easy-to-navigate site. I wanted the 
+> I wanted easy trainers to be able to create, access, edit and delete information on available training options through a minimalist, sleek, easy-to-navigate site. I wanted trainer 
+to have the option to view courses that have been completed, and courses that are upcoming in order to quickly find the requisite course. I wanted the 
 trainer to be able to create a course, but to still be directed in some aspects of the course creation. Therefore, a number of fields of the course creation and course editing pages
-are populated dropdown menus (Category, Duration & Size), where the contents of the dropdown come from the requisite collections in the [database](#Database). Of course these elements
-are not static, and as such, each collection can be all be managed (created, viewed, edited, deleted) from the Manage Course Utilities menu. I also wanted the trainer to be able to 
-quickly ascertain the uptake on each course to view the amount of enrollments for each course, so I chose to represent this as a progress bar that gives a quick visual breakdown 
+are populated dropdown menus (Category, Duration & Size), where the contents of the dropdown come from the requisite collections in the [database](#Database). Of course these 
+elements are not static, and as such, each collection can be all be managed (created, viewed, edited, deleted) from the Manage Course Utilities menu. I also wanted the trainer to 
+be able to quickly ascertain the uptake on each course to view the amount of enrollments for each course, so I chose to represent this as a progress bar that gives a quick visual breakdown 
 of the enrollments. 
 
 ***Trainee Looking to access course information and enroll in their chosen programme***
@@ -89,13 +90,16 @@ As detailed in the [UX + User Stories](#UX+User-Stories) both trainer and traine
 demonstrative purposes, visitors can quickly move back and forth between the two interfaces. 
 
 ## Current-Features
-***Home Page - Trainer Interface***
+***Trainer Interface***
 As discussed in the user stories, within the trainer interface, the trainer needs to quickly ascertain information about presented training. Therefore the main landing page for the 
-trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. When the user, clicks on a particular course, the 
-collapsible element opens out to present a more details view of the programme, highlighting the various details of that particular iteration, as well as current uptake in the course 
-(shown in progress bar). The icons show to the left of the course title are dependant on the course category chosen (Technical, Soft-Skills, Professional).
-A number of buttons also provide prompts for the trainer to manage the courses, allowing for the editing and deleting of a particular course, fulfilling the main requirements for the
-trainer highlighted in the user stories.
+trainer section of the side contains an accordian with each course and it's start date presented to the user, as shown below. All courses are sorted according to on the date they're 
+due to run, with the soonest course appearing at the top.
+
+The first landing page presents only course that have yet to some (i.e. start date either today or after today). To view courses that ran previously, the training can navigate to 
+this list via the 'Completed Courses' button on the navbar. When the user, clicks on a particular course, the collapsible element opens out to present a more details view of the 
+programme, highlighting the various details of that particular iteration, as well as current uptake in the course (shown in progress bar). The icons show to the left of the course 
+title are dependant on the course category chosen (Technical, Soft-Skills, Professional). A number of buttons also provide prompts for the trainer to manage the courses, allowing 
+for the editing and deleting of a particular course, fulfilling the main requirements for the trainer highlighted in the user stories.
 
 >Trainer Interface - Closed Menu
 ![Home Page Closed](documentation/home_page_closed.jpg)
@@ -138,10 +142,11 @@ Maximum Course size take the same form as this.
 >Manage Categories Page
 ![Utilities](documentation/manage_categories.jpg)
 
-***Home Page - Trainee***
+***Home Page - Trainee Interface***
 Within the trainee interface, as called out in the user stories, the trainee needs to be able to quickly scan through the list of available courses and gather as much information
-as they require to decide on a particular course. Therefore, mirroring the Trainer interface, a collapsible accordian element presents all the courses to the trainee. When they click
-on a particular course, they are presented with the breakdown shown below. Within the interface, the trainee can navigate to the enrollment page for their particular chosen course.
+as they require to decide on a particular course. Therefore, mirroring the Trainer interface, a collapsible accordian element presents all upcoming courses to the trainee (i.e. due to 
+start after today).When they click on a particular course, they are presented with the breakdown shown below. Within the interface, the trainee can navigate to the enrollment page 
+for their particular chosen course.
 
 The trainee interface is distinguished from the trainer interface by the colour scheme of the navbar and the available options in the navbar. Users can navigate between both interfaces
 via the navbar.
