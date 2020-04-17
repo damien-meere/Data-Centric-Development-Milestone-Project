@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from datetime import date
+from datetime import date, datetime
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'trainingDB'
@@ -12,12 +12,6 @@ app.config["MONGO_URI"] = os.getenv(
 mongo = PyMongo(app)
 
 # Course Related CRUD Functionality
-
-# call to courses page and supply list of all courses sorted by date
-@app.route('/get_courses')
-def get_courses():
-    return render_template("courses.html", courses=mongo.db.courses.find().sort("date", 1))
-
 
 # Upcoming Courses
 # Call to courses page and supply list of all courses that will run after today, sorted by date
@@ -40,6 +34,12 @@ def get_courses_lt():
     # get date in correct string format
     today_string = today.strftime("%Y-%m-%d")
     return render_template("courses.html", courses=mongo.db.courses.find({"date":{'$lt': today_string}}).sort("date", 1))
+
+
+# Call to courses page and supply list of all courses, regardless of start date
+@app.route('/get_all_courses')
+def get_all_courses():
+    return render_template("courses.html", courses=mongo.db.courses.find().sort("date", 1))
 
 
 # call to trainee courses page and supply list of all courses coming up (not showing previous courses for this iteration)
@@ -99,10 +99,8 @@ def update_course(course_id):
 @app.route('/edit_course/<course_id>', methods=["POST"])
 def edit_course(course_id):
     coursedb = mongo.db.courses
-
     #need to operate on the provided date string to make a datetime object for storage
-    datetime_object = datetime.strptime(request.form.get('date'), '%Y-%m-%d')
-
+    #datetime_object = datetime.strptime(request.form.get('date'), '%Y-%m-%d')
     # $set operator required to ensure we only update the requisit fields, and
     # not create a new object in the database containing only the data from the
     # request.
@@ -110,10 +108,9 @@ def edit_course(course_id):
                         {"$set": {
                             'category_name': request.form.get('category_name'),
                             'course_name': request.form.get('course_name'),
-                            'date': datetime_object,
+                            'date': request.form.get('date'),
                             'duration': request.form.get('duration'),
-                            'course_description': request.form.get('course_description'),
-                            'max_subscriber': request.form.get('max_subscriber')
+                            'course_description': request.form.get('course_description')
                         }})
     return redirect(url_for('get_courses_gte'))
 
