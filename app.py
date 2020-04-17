@@ -42,10 +42,14 @@ def get_courses_lt():
     return render_template("courses.html", courses=mongo.db.courses.find({"date":{'$lt': today_string}}).sort("date", 1))
 
 
-# call to trainee courses page and supply list of all courses
+# call to trainee courses page and supply list of all courses coming up (not showing previous courses for this iteration)
 @app.route('/get_trainee_courses')
 def get_trainee_courses():
-    return render_template("courses_trainee.html", courses=mongo.db.courses.find().sort("date", 1))
+    # get todays date
+    today = date.today()
+    # get date in correct string format
+    today_string = today.strftime("%Y-%m-%d")
+    return render_template("courses_trainee.html", courses=mongo.db.courses.find({"date":{'$gte': today_string}}).sort("date", 1))
 
 
 # Call to add course page, supplying options for dropdown menu from
