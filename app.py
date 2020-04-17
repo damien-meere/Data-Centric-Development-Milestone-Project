@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from datetime import datetime
+from datetime import date
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'trainingDB'
@@ -19,6 +19,28 @@ mongo = PyMongo(app)
 @app.route('/get_courses')
 def get_courses():
     return render_template("courses.html", courses=mongo.db.courses.find().sort("date", 1))
+    
+
+# Course that will run after today
+@app.route('/')
+@app.route('/get_courses_gte')
+def get_courses_gte():
+    # get todays date
+    today = date.today()
+    # get date in correct string format
+    today_string = today.strftime("%Y-%m-%d")
+    return render_template("courses.html", courses=mongo.db.courses.find({"date":{'$gte': today_string}}).sort("date", 1))
+
+
+# Courses that have run before today
+@app.route('/')
+@app.route('/get_courses_lt')
+def get_courses_lt():
+    # get todays date
+    today = date.today()
+    # get date in correct string format
+    today_string = today.strftime("%Y-%m-%d")
+    return render_template("courses.html", courses=mongo.db.courses.find({"date":{'$lt': today_string}}).sort("date", 1))
 
 
 # call to trainee courses page and supply list of all courses
