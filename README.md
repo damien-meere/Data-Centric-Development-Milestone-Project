@@ -192,7 +192,7 @@ Validation against the User stories highlighted in previous sections was key. Th
 throughout the site facilitating these needs worked effectively. Therefore the following tests were conducted to ensure that the originally stated users stories were catered to:
 
 ### Trainer Interface - Home Page
-1. Verify that all requisite course are displayed on the Trainer Interface, and that all fields are complete.
+1. Verify that all requisite courses are displayed on the Trainer Interface, and that all fields are complete.
 2. Verify that within the course components, the dynamic course update indicator changes to reflect the current enrollment levels at all times.
 3. Verify that icons within the course components change to meet the designated course and chosen course category.
 4. Verify that all buttons within the course components lead to the requisite page, and where course-specific, include the requisite course details.
